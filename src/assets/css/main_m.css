@@ -1,0 +1,424 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  /* border: 0; */
+  font-size: 12px;
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+a{
+  text-decoration: none;
+}
+div,li,ul{
+  list-style: none;
+}
+body {
+   font-family: 'Arial', 'Microsoft YaHei';
+   overflow-x: hidden!important;
+ }
+div {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent; /* 防止ios 出现点击div 出现选中效果*/
+}
+#app{
+  overflow: hidden;
+}
+.pageTitle{
+  font-size: 24px;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+  line-height: 30px;
+  border-left: 5px solid #262626;
+  text-indent: 10px;
+}
+.NoramlPaddingTop{
+   padding-top: 0rem!important;
+}
+.NomralBg{
+   background-size: cover!important;
+   width: 100%;
+   display: block!important;
+}
+.messageBoxMobile {
+   z-index: 10000!important;
+}
+.mid-box {
+  width: 92%;
+  margin: 0 auto;
+}
+.NoContent {
+   margin-top: 10px;
+   font-size: 16px;
+   padding-bottom: 10px;
+}
+#main-content {
+  width: 95%!important;
+  margin: 0 auto!important;
+  margin-top: 1rem!important;
+}
+.clear{
+  clear: both;
+}
+/* 解决苹果手机按钮颜色与安卓机不一致的问题 */
+input[type=button], button { cursor: pointer; -webkit-appearance: none; }
+
+.clear {
+  clear: both;
+}
+/* 解决苹果手机按钮颜色与安卓机不一致的问题 */
+input[type=button], button { cursor: pointer; -webkit-appearance: none; }
+.messageboxIndex{
+   z-index: 100000!important;
+ }
+/* 公用表格 */
+.warper {
+  width: calc(100% - 20px);
+  display: inline-flex;
+  flex-wrap: wrap;
+  /* background: #f4f4f4; */
+  padding: 10px;
+  position: relative;
+}
+.warper .HeadTitle {
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   position: relative;
+   margin-top: 10px;
+   margin-bottom: 10px;
+}
+.warper .HeadTitle .Request{
+   color: #3d55a5;
+   font-size: 1.4rem;
+   float: left;
+   margin-left: 10px;
+}
+.warper .HeadTitle .status{
+  color: #d01818;
+  font-size:1.2rem;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.warper .HeadTitle::before {
+   content: '';
+   height: 20px;
+   line-height: 20px;
+   background: #3d55a5;
+   width: 3px;
+   display: block;
+   float: left;
+}
+.warper .Inner {
+   width: 95%;
+   margin: 0 auto;
+   display: flex;
+   flex-wrap: wrap;
+   background: #fff;
+}
+.warper .Inner .left{
+   width: 100%;
+}
+.warper .Inner  .right {
+   width: 100%;
+}
+.warper .TableA {
+   background: #fff;
+   border-radius: 5px;
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   overflow: hidden;
+   margin-bottom: 10px;
+}
+.warper .TableA ul{
+   width: 95%;
+   margin: 0 auto;
+   display: flex;
+   flex-wrap: wrap;
+}
+.warper .TableA ul li{
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: flex-start;
+}
+.warper .TableA ul li p{
+   width: 100%;
+   font-size: 16px;
+}
+.NoramlLi {
+   padding-top: 15px!important;
+   padding-bottom: 15px!important;
+}
+.warper .TableA .w30{
+   width: 30%!important;
+   text-align: right;
+}
+.warper .TableA .w70{
+   width: 68%!important;
+   text-align: right;
+}
+.warper .TableA .w15{
+   width: auto!important;
+   text-align: right;
+   font-size: 1.2rem;
+   padding-bottom: 10px;
+   padding-top: 10px;
+}
+.warper .TableA .w83{
+   width: auto!important;
+   text-align: left;
+   font-size: 1.2rem;
+   padding-bottom: 10px;
+   padding-top: 10px;
+}
+.warper .TableA .w50{
+  width: 100%;
+  text-align: left;
+  font-size: 1.2rem;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.warper .TableA .w40{
+   width: 40%;
+   text-align: right;
+}
+.warper .TableA .w60{
+   width: 58%;
+   text-align: left;
+}
+.warper .TableA .w5{
+   width: 5%;
+   text-align: center;
+   color: #fff;
+}
+.warper .TableA .w15{
+   width: 15%;
+   text-align: center;
+}
+.warper .TableA .w15 img{
+   width: 90%;
+}
+.warper .TableA .w20{
+   width: 20%;
+   text-align: center;
+   color: #fff;
+   font-size: 1.2rem;
+}
+.warper .TableA .w20 img{
+   width: 80%;
+}
+.warper .TableA .w58{
+   width: 58%;
+   text-align: center;
+   color: #fff;
+   font-size: 1.2rem;
+}
+.warper .TableA .NormalText {
+   color: #333;
+   text-align: left;
+}
+.warper .TableA  .NormalText em {
+   font-size: 1.2rem;
+   color: #333;
+   font-style: normal;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: flex-start;
+   margin-bottom: 5px;
+   float:left;
+   margin-right: 5px;
+}
+.warper .TableA  .BgTitle {
+   background: #7f8dba;
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+.warper .TableA  .BgTitle .InnerTitle{
+   color: #fff;
+   font-size: 1.4rem;
+   width: 95%;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+}
+.warper .TableA  .BgTitle .InnerTitle::before{
+   content: '';
+   height: 20px;
+   line-height: 20px;
+   background: #fff;
+   width: 3px;
+   display: block;
+   float: left;
+   margin-right: 5px;
+}
+.warper .Recipient {
+   margin-top: 20px;
+   margin-bottom: 20px;
+}
+.warper .Recipient .BgTitle{
+   padding-top: 10px!important;
+   padding-bottom: 10px!important;
+}
+.warper .Recipient  .TotalText {
+   width: 95%;
+   margin: auto;
+   text-align: right;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
+.warper .RecipientText {
+   width: 95%;
+   margin: auto;
+   text-align: right;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
+.warper .BottomMeun {
+   margin: 0 auto;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 20px;
+   margin-top: 10px;
+   width: 90%;
+}
+.warper .BottomMeun a{
+  background: #f29600;
+  width: 49%;
+  height: 45px;
+  text-align: center;
+  line-height: 45px;
+  color: #fff;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.warper .BottomMeun a:hover{
+   background: #7f8dba;
+}
+.messagelayer {
+   z-index: 10000!important;
+}
+.TotalSunm {
+   background: #eee;
+   width: 100%;
+   margin-top: 10px;
+   height: 45px;
+   line-height: 45px;
+   text-align: right;
+   padding-right: 2.5%;
+   font-size: 1.2rem;
+}
+.TotalSunm span{
+   font-size: 1.2rem;
+}

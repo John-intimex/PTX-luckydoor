@@ -1,0 +1,315 @@
+body,
+p,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p div {
+  margin: 0;
+  padding: 0;
+}
+body{
+  padding: 0 !important;
+}
+ul,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+body {
+  font-family: 'Arial', 'Microsoft YaHei';
+  overflow-x: hidden!important;
+}
+.clear {
+   clear: both;
+}
+#container {
+  position: relative;
+  background-position: center;
+  background-size: 100%;
+  margin-top:0px;
+}
+.NormalTop {
+   padding-top: 0rem!important;
+}
+.NomralBg{
+   background-size: cover!important;
+   width: 100%;
+   display: block;
+}
+.mid-box {
+  width: 1000px;
+  margin: 0 auto;
+}
+.NoContent {
+   margin-top: 10px;
+   font-size: 16px;
+}
+.maincontent{
+  width: 1200px;
+  margin: 0 auto;
+}
+.pageTitle{
+  font-size: 24px;
+  margin: 0 auto;
+  margin-top: 50px;
+  line-height: 30px;
+  border-left: 5px solid #262626;
+  text-indent: 10px;
+  margin-bottom: 20px;
+}
+.clear {
+  clear: both;
+}
+/* 解决苹果手机按钮颜色与安卓机不一致的问题 */
+input[type=button], button { cursor: pointer; -webkit-appearance: none; }
+.messageboxIndex{
+   z-index: 100000!important;
+ }
+
+/* 公用表格 */
+.warper {
+  width: calc(100% - 20px);
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  position: relative;
+  min-height: 600px;
+}
+.warper .HeadTitle {
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: space-between;
+   position: relative;
+   margin-top: 10px;
+   margin-bottom: 10px;
+}
+.warper .HeadTitle .Request{
+   color: #3d55a5;
+   font-size: 20px;
+   float: left;
+   margin-left: 10px;
+}
+.warper .HeadTitle .status{
+   color: #d01818;
+   font-size: 16px;
+   float: right;
+}
+.warper .HeadTitle::before {
+   content: '';
+   height: 20px;
+   line-height: 20px;
+   background: #3d55a5;
+   width: 3px;
+   display: block;
+   float: left;
+   position: absolute;
+}
+.warper .Inner {
+   width: 1000px;
+   margin: 0 auto;
+   display: flex;
+   flex-wrap: wrap;
+   background: #fff;
+}
+.warper .Inner .left{
+   width: 100%;
+}
+.warper .Inner  .right {
+   width: 100%;
+}
+.warper .TableA {
+   background: #fff;
+   border-radius: 5px;
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   overflow: hidden;
+}
+.warper .TableA ul{
+   width: 95%;
+   margin: 0 auto;
+   display: flex;
+   flex-wrap: wrap;
+}
+.warper .TableA ul li{
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   align-items: center;
+   border-bottom: 1px solid #eee;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
+.warper .TableA ul li p{
+   width: 100%;
+   font-size: 16px;
+}
+.NoramlLi {
+   padding-top: 15px!important;
+   padding-bottom: 15px!important;
+}
+.warper .TableA .w30{
+   width: 30%!important;
+   text-align: right;
+}
+.warper .TableA .w70{
+   width: 68%!important;
+   text-align: right;
+}
+.warper .TableA .w15{
+   width: 15%!important;
+   text-align: right;
+   font-size: 16px;
+}
+.warper .TableA .w83{
+   width: 83%!important;
+   text-align: left;
+}
+.warper .TableA .w50{
+   width: 49%;
+   text-align: left;
+}
+.warper .TableA .w40{
+   width: 40%;
+   text-align: right;
+}
+.warper .TableA .w60{
+   width: 58%;
+   text-align: left;
+}
+.warper .TableA .w5{
+   width: 5%;
+   text-align: center;
+   color: #fff;
+}
+.warper .TableA .w15{
+   width: 15%;
+   text-align: center;
+}
+.warper .TableA .w15 img{
+   width: 90%;
+}
+.warper .TableA .w20{
+   width: 20%;
+   text-align: center;
+   color: #fff;
+}
+.warper .TableA .w20 img{
+   width: 80%;
+}
+.warper .TableA .w58{
+   width: 58%;
+   text-align: center;
+   color: #fff;
+}
+.warper .TableA .NormalText {
+   color: #333;
+   text-align: left;
+}
+.warper .TableA  .NormalText em {
+   font-size: 16px;
+   color: #333;
+   font-style: normal;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: flex-start;
+   margin-bottom: 5px;
+   float:left;
+   margin-right: 5px;
+}
+.warper .TableA  .BgTitle {
+   background: #7f8dba;
+   width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+.warper .TableA  .BgTitle .InnerTitle{
+   color: #fff;
+   font-size: 20px;
+   width: 95%;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+}
+.warper .TableA  .BgTitle .InnerTitle::before{
+   content: '';
+   height: 20px;
+   line-height: 20px;
+   background: #fff;
+   width: 3px;
+   display: block;
+   float: left;
+   margin-right: 5px;
+}
+.warper .Recipient {
+   margin-top: 20px;
+   margin-bottom: 20px;
+}
+.warper .Recipient .BgTitle{
+   padding-top: 10px!important;
+   padding-bottom: 10px!important;
+}
+.warper .Recipient  .TotalText {
+   width: 95%;
+   margin: auto;
+   text-align: right;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
+.warper .RecipientText {
+   width: 95%;
+   margin: auto;
+   text-align: right;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
+.warper .BottomMeun {
+   margin: 0 auto;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 20px;
+   margin-top: 10px;
+   width: 900px;
+}
+.warper .BottomMeun a{
+   background: #f29600;
+   width: 45%;
+   height: 45px;
+   text-align: center;
+   line-height: 45px;
+   color: #fff;
+   font-size: 16px;
+   border-radius: 10px;
+   cursor: pointer;
+   transition: all .3s;
+}
+.warper .BottomMeun a:hover{
+   background: #7f8dba;
+}
+.messagelayer {
+   z-index: 10000!important;
+}
+.TotalSunm {
+   background: #eee;
+   width: 100%;
+   margin-top: 10px;
+   height: 45px;
+   line-height: 45px;
+   text-align: right;
+   padding-right: 2.5%;
+}
