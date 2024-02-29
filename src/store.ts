@@ -54,7 +54,7 @@ export default new Vuex.Store({
     discount: new PromotionDiscount(),
     productDetailSku: '0',
     productDetailTab: new Tab('none'),
-    productDetail: new PanelDetail('', '', '', '', 0, 0, 0, 0, '', '', '', ''),
+    productDetail: new PanelDetail('', '', '', '', '', '', 0, 0, 0, 0, '', '', '', ''),
     imgList: [],
     DPickName: '',
     DPickPhone: '',

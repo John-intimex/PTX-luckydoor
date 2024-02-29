@@ -1,14 +1,27 @@
 <template>
     <div class="CatMain NoramlPaddingTop">
       <transition name="slide">
-        <div key="1" v-if="!waiting" style="display:flex;">
-           <div class="DetailTitle"><img :src="BannerImg" v-show="BannerImg!==null"><div class="TitleBg"><div class="innerBoxText">{{CateName}}</div></div></div>
-      </div>
-      </transition>
-      <transition name="slide">
-        <div class="faker" key="2" v-if="waiting" v-loading="true"></div>
-      </transition>
-        <div class="NomralBg">
+        <div key="1" v-if="!waiting">
+           <div class="DetailTitle">
+            <img :src="BannerImg" v-show="BannerImg!==null">
+            <!-- <div class="TitleBg"><div class="innerBoxText">{{CateName}}</div></div> -->
+            </div>
+          <div v-if="catId === 40121">
+            <div class="NomralBg">
+              <div class="cms-list cms-listbox">
+                  <div class="perData" v-for="(v,index) in catList" :key="index" >
+                    <a :href="v.Url" target="_blank">
+                      <!-- <p v-html="v.Cover" class="Content" ></p> -->
+                      <div class="Content">
+                        <img :src="v.Cover" alt="">
+                      </div>
+                    </a>
+                  </div>
+              </div>
+          </div>
+           </div>
+           <div v-else>
+            <div class="NomralBg">
             <p class="PathData"><router-link to="/" class="HomePath">{{$t('Message.HomeTips')}}</router-link><i class="el-icon-arrow-right"></i><span class="currentTitle">{{CateName}}</span></p>
             <div class="cms-list">
                 <div class="perData" v-for="(v,index) in ListData" :key="index" >
@@ -17,6 +30,13 @@
                 </div>
             </div>
         </div>
+           </div>
+      </div>
+      </transition>
+      <transition name="slide">
+        <div class="faker" key="2" v-if="waiting" v-loading="true"></div>
+      </transition>
+
     </div>
 </template>
 
@@ -37,6 +57,8 @@ export default class InsCatLayout1 extends Vue {
     private waiting: boolean = true;
     ActiveIndex:number=-1;
     NoImg:string='/images/pc/proddef.jpg';
+    catId:string='';
+    catList: any[]=[];
 
       get cid () {
       return this.$route.params.id;
@@ -65,8 +87,10 @@ export default class InsCatLayout1 extends Vue {
     this.$Api.cms.getCategoryByDevice({ CatId: this.cid, IsMobile: true }).then(async (result) => {
      console.log(result, 'gggggggg');
      this.BannerImg = result.ImagePath;
+     this.catList = result.Contents;
      this.CateName = result.Name;
       this.waiting = false;
+      this.catId = result.Id;
     }).catch((error) => {
       console.log(error, 'error');
       this.$message({
@@ -172,7 +196,7 @@ export default class InsCatLayout1 extends Vue {
         width:100%;
         display:flex;
         flex-wrap: wrap;
-        margin-bottom: 1rem;
+        margin-bottom: 3rem;
         .Title {
           width: 100%;
           display: flex;
@@ -239,5 +263,16 @@ export default class InsCatLayout1 extends Vue {
           }
         }
     }
+}
+.cms-listbox{
+  width: 100%;
+  .perData{
+    .Content{
+      img{
+        width: 100%;
+        display: block;
+      }
+    }
+  }
 }
 </style>

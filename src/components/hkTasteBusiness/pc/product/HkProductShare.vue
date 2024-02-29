@@ -39,8 +39,8 @@ export default class HkProductShare extends Vue {
   margin-right: 0px !important;
 }
 .productshare_icon_warpper img {
-  width: 25px;
-  margin-right: 5px;
+  width: 40px;
+  margin-left: 14px;
   cursor: pointer;
 }
 </style>

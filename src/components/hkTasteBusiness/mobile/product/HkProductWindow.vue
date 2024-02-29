@@ -3,11 +3,11 @@
         <img :src="(item.Image?item.Image:item.Img_L?item.Img_L:item.Img)"   :style="imgStyla" :data-key="item.Sku" @error="loadError"  @click="goUrl(item)"/>
         <div class="fav" v-if="!item.negotiable || item.negotiable==null"><img :src="item.IsFavorite ? '/images/mobile/faved.png': '/images/mobile/unfav.png'" @click.stop="addToFavorite(item)" /></div>
         <div class="in_pdWindow_item_description">
-             <router-link :to="'/product/detail/'+item.Sku" class="in_pdWindow_item_title" >&nbsp;{{item.Name}}</router-link >
-            <!-- <div class="in_pdWindow_item_code">&nbsp;{{item.Code}}</div> -->
-            <div class="in_pdWindow_item_price" v-if="!item.negotiable || item.negotiable==null">
+             <router-link :to="'/product/detail/'+item.Sku" class="in_pdWindow_item_title" >{{item.Name}}</router-link >
+            <div class="code">{{$t("product.Code")}}: {{item.Code}}</div>
+            <!-- <div class="in_pdWindow_item_price" v-if="!item.negotiable || item.negotiable==null">
               <inPrices :primePrices="item.ListPrice" :currentPrices="item.SalePrice" :currency="item.Currency" :DefaultListPrice="item.DefaultListPrice" :DefaultSalePrice="item.DefaultSalePrice" :DefaultCurrency="item.DefaultCurrency" size="small"></inPrices>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -124,29 +124,40 @@ export default class InsProductWindow extends Vue {
   box-sizing: border-box;
   cursor: pointer;
   width: 100%;
+  border: 1px solid #afbec3;
+  box-sizing: border-box;
+  border-radius: 8px;
 }
 .height_line {
   border: 1px solid black !important;
 }
 .in_pdWindow_item_title {
     font-size: 1.4rem;
-    width: 90%;
+    width: 96%;
     margin: 0 auto;
     text-align: center;
-    color: #4c4c4c;
-    line-height: 25px;
+    color: #112a4d;
+    line-height: 1.6rem;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     word-break: break-word;
     margin-top: .5rem;
-    margin-bottom: .5rem;
+    margin-bottom: .2rem;
+    font-weight: bold;
 
 }
 .in_pdWindow_item_code {
   margin-top: 1rem;
   color: #999999;
   text-align: center;
+}
+.in_pdWindow_item_description{
+  .code{
+    font-size: 1.2rem;
+    color: #333333;
+    text-align: center;
+  }
 }
 </style>

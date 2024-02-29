@@ -8,9 +8,13 @@
       </div>
         <div class="in_pdWindow_item_description">
             <a  href="javascript:;" class="in_pdWindow_item_title" v-on:click="addCart(item)">{{item.Name}}</a>
-            <div class="in_pdWindow_item_price" v-if="!item.Negotiable">
-              <inPrices :primePrices="item.ListPrice" :currentPrices="item.SalePrice" :currency="item.Currency" :DefaultListPrice="item.DefaultListPrice" :DefaultSalePrice="item.DefaultSalePrice" :DefaultCurrency="item.DefaultCurrency" size="small"></inPrices>
+            <div class=""></div>
+            <div class="Code">
+              {{$t("product.Code")}}: {{item.Code}}
             </div>
+            <!-- <div class="in_pdWindow_item_price" v-if="!item.Negotiable">
+              <inPrices :primePrices="item.ListPrice" :currentPrices="item.SalePrice" :currency="item.Currency" :DefaultListPrice="item.DefaultListPrice" :DefaultSalePrice="item.DefaultSalePrice" :DefaultCurrency="item.DefaultCurrency" size="small"></inPrices>
+            </div> -->
         </div>
     </div>
   </div>
@@ -132,6 +136,13 @@ export default class InsProductWindow extends Vue {
 .productMain:hover .in_pdWindow_item_title {
     color: @base_color!important;
 }
+.PcVersion .in_pdWindow_item_description{
+  .Code{
+    text-align: center;
+    font-size: 20px;
+    color: #333333;
+  }
+}
 </style>
 <style lang="less" scoped>
 .imgbox{
@@ -210,31 +221,34 @@ export default class InsProductWindow extends Vue {
     background-size: 100%;
 }
 
-.imgbox img{
-    width: 100%;
-    border-radius:0px;
-    transition: border all 1s;
-    box-sizing: border-box;
-}
-.imgbox img:hover{
-    border:1px solid #e02533;
-}
+// .imgbox img{
+//     width: 100%;
+//     border-radius:0px;
+//     transition: border all 1s;
+//     box-sizing: border-box;
+//     display: block;
+// }
+// .imgbox img:hover{
+//     border:1px solid #e02533;
+// }
 .in_pdWindow_page_item img {
   box-sizing: border-box;
   cursor: pointer;
-  border: 1px solid #eee;
+  border: 1px solid #999999;
   border-radius:5px;
+  display: block;
+  width: 100%;
 }
 .height_line {
   border: 1px solid @base_color !important;
 }
 .in_pdWindow_item_title {
-    font-size: 1.4rem;
-    width: 90%;
+    font-size: 24px;
+    width: 100%;
     margin: 0 auto;
     word-break: break-all;
     text-align: center;
-    color: #0b0b0b;
+    color: #112a4d;
     display: inline-block;
     text-align: center;
     line-height: 25px;
@@ -243,8 +257,9 @@ export default class InsProductWindow extends Vue {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     word-break: break-word;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-weight: bold;
 
 }
 .in_pdWindow_item_code {

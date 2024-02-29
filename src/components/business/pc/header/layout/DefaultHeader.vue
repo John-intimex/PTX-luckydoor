@@ -1,22 +1,30 @@
 <template>
 <div class="header-layout"  v-cloak>
   <div class="headerBg">
-      <div class="headerTop">
+      <div class="headerTop fix">
+        <div class="left">
+          <!-- logo开始 -->
+          <div class="logoBox">
+              <a href="/"><img src="/images/pc/logo.png"></a>
+          </div>
+          <!-- logo结束 -->
+        </div>
+        <div class="right">
           <div class="inner">
               <!-- 搜索框开始 -->
               <div class="search-box">
-                <el-select v-model="searchType" placeholder="please select">
+                <!-- <el-select v-model="searchType" placeholder="please select">
                   <el-option
                     v-for="item in typeList"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value">
                   </el-option>
-                </el-select>
+                </el-select> -->
 
                 <div class="search-input">
-                  <input type="text" v-model="key" @keyup.enter="search" />
                   <span class="searchBtn" @click="search"></span>
+                  <input type="text" v-model="key" @keyup.enter="search" />
                 </div>
               </div>
               <!--搜索框结束  -->
@@ -28,28 +36,24 @@
                   </router-link>
               </div>
               <!-- 我的喜爱开始 -->
-              <div class="cartTop">
+              <!-- <div class="cartTop">
                   <router-link to="/account/MyFavorite">
                           <i class="handle-icon fav-icon"></i>
                   </router-link>
-              </div>
+              </div> -->
               <!-- 我的喜爱结束 -->
               <!-- 购物车开始 -->
-              <Shopcart class="memberLogin"></Shopcart>
+              <!-- <Shopcart class="memberLogin"></Shopcart> -->
               <!-- 购物车结束 -->
               <!-- 切换语言开始 -->
-              <CodeSelect  />
-              <div class="langBox">
+              <!-- <CodeSelect  /> -->
+              <!-- <div class="langBox">
                   <InsLangSwitch></InsLangSwitch>
-              </div>
+              </div> -->
               <!-- 切换语言结束 -->
           </div>
+        </div>
       </div>
-      <!-- logo开始 -->
-      <div class="logoBox" v-if="!showInFixed">
-          <a href="/"><img src="/images/pc/pcindex_09.png"></a>
-      </div>
-      <!-- logo结束 -->
       <!-- 导航栏开始 -->
       <Menu />
       <!-- 导航栏结束 -->
@@ -107,14 +111,15 @@ export default class DefaultHeader extends Vue {
   }
 
   search () {
-    switch (this.searchType) {
-      case 0:
-        this.searchPro();
-        break;
-      case 1:
-        this.searchCms();
-        break;
-    }
+    // switch (this.searchType) {
+    //   case 0:
+    //     this.searchPro();
+    //     break;
+    //   case 1:
+    //     this.searchCms();
+    //     break;
+    // }
+    this.searchPro();
   }
 
   searchPro () {
@@ -161,7 +166,7 @@ export default class DefaultHeader extends Vue {
   }
 
   created () {
-    this.$store.dispatch('setShopCart', this.$Api.shoppingCart.getShoppingCart());
+    // this.$store.dispatch('setShopCart', this.$Api.shoppingCart.getShoppingCart());
   }
 
   mounted () {
@@ -185,19 +190,28 @@ export default class DefaultHeader extends Vue {
    width: 100%;
    background:#fff;
    background-size: cover;
-   display: inline-block;
+   display: block;
    box-shadow: 0 0 10px 0 #d4d5d1;
 }
 .headerTop{
     width: 1200px;
     margin: 0 auto;
-    padding-top: 10px;
-    height: 34px;
+    // padding-top: 10px;
+    // height: 34px;
+    // display: flex;
+    // justify-content: space-between;
+    .left{
+      float: left;
+    }
+    .right{
+      float: right;
+    }
 }
 .headerTop .inner{
     float: right;
     display: flex;
     flex-wrap: wrap;
+    margin-top: 48px;
 }
 
 .memberLogin{
@@ -205,7 +219,7 @@ export default class DefaultHeader extends Vue {
     float: left;
     align-items: center;
     position: relative;
-    margin-right: 10px;
+    margin-right: 28px;
 }
 .cartTop{
     display: flex;
@@ -244,13 +258,14 @@ export default class DefaultHeader extends Vue {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 40px;
+    // padding-top: 40px;
 }
 .logoBox a{
     display: flex;
 }
 .logoBox a img{
    width: 100%;
+   display: block;
 }
 
 .fav-icon {
@@ -263,38 +278,81 @@ export default class DefaultHeader extends Vue {
 .ptxicon {
     background: url('/images/pc/ptx.png') no-repeat center center;
     display: inline-block;
-    width: 25px;
-    height: 25px;
+    width: 22px;
+    height: 24px;
     background-size: contain;
 }
 // new css
 .header-layout {
  /deep/ .header_menu {
-   width: 1200px;
-   margin: 30px auto 10px;
+   width: 100%;
+  //  margin: 30px auto 10px;
+  background-color: #112a4d;
+  border-top: 1px solid #000000;
+  border-bottom: 2px solid #fff;
    > ul {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
      > li {
-      float: left;
-      display: flex;
-      align-items: center;
+      // float: left;
+      // display: flex;
+      // align-items: center;
       position: relative;
-      width: 14.28%;
-
+      width: auto;
+      margin: 0 29px;
+      // border-right: 1px solid #fff;
+      display: block;
+          height: 37px;
+      &::after{
+        content: '';
+        width: 1px;
+        height: 21px;
+        background-color: #fff;
+        position: absolute;
+        right: -30px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
       > a {
         width: 100%;
-        font-size: 20px;
-        color: #666666;
+        font-size: 16px;
+        color: #fff;
         display: block;
         text-align: center;
         font-weight: 500;
-        text-transform: uppercase;
-        padding: 10px 5px;
+        // text-transform: uppercase;
+        padding: 0;
+        line-height: 37px;
+
+      }
+      &:last-child{
+        &::after{
+        content: '';
+
+        display: none;
+      }
       }
 
       &:hover{
+
+        height: 24px;
+              margin: 0 11px;
+        &::after{
+          content: '';
+          right: -12px;
+        }
         > a  {
-          background: @base_color;
-          color: #fff;
+
+              color: #112a4d;
+              height: 24px;
+    line-height: 24px;
+    background: #ffffff;
+        padding: 0 18px;
+        border-radius: 6px;
+              box-sizing: border-box;
+
         }
       }
 
@@ -304,8 +362,8 @@ export default class DefaultHeader extends Vue {
         li {
           border: 0;
           > a {
-            font-size: 18px;
-            color: #666666;
+            font-size: 16px;
+            color: #fff;
             display: block;
             text-align: center;
             font-weight: 500;
@@ -315,8 +373,9 @@ export default class DefaultHeader extends Vue {
 
           &:hover{
              > a {
-              background: @base_color;
-              color: #fff;
+              background: #ffffff;
+              color: #112a4d;
+              padding: 6px 18px;
             }
           }
         }
@@ -346,15 +405,16 @@ export default class DefaultHeader extends Vue {
   }
 
   .search-input {
-    border: 1px solid #808080;
-    width: 340px;
+    border: 2px solid #1c3860;
+    width: 230px;
     display: flex;
     float: left;
     align-items: center;
-    margin-right: 20px;
+    margin-right: 28px;
+    border-radius: 3px;
 
     > input {
-      width: 305px;
+      width: 100%;
       float: left;
       border:none;
       background: transparent;
@@ -364,12 +424,14 @@ export default class DefaultHeader extends Vue {
     }
 
     .searchBtn{
-      width: 25px;
-      height: 25px;
-      display: inline-block;
+      width: 23px;
+      height: 21px;
+      display: block;
       background: url('/images/pc/pcindex_03.png') no-repeat center center;
-      background-size: 100%;
+      background-size: cover;
       cursor: pointer;
+      margin-left: 8px;
+      // margin-right: 5px;
     }
   }
 }

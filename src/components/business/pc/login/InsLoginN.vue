@@ -35,7 +35,7 @@
                     </div>
                 </InsForm>
               </div>
-              <InsButton :nama="$t('Login.doLogin')" @click="login" style="margin-top: 12.5rem;"/>
+              <InsButton :nama="$t('Login.doLogin')" @click="login" style="margin-top: 10rem;"/>
           </div>
           <div class="register">
               <div>
@@ -260,13 +260,14 @@ export default class InsLoginN extends Vue {
 }
 .insLogin_warrper{
     width: 1200px;
-    margin: 0rem auto;
-    padding-bottom: 10px;
+    margin: 0 auto;
+    // padding-bottom: 10px;
     .insLogin_title{
         width: 1060px;
         margin: 0 auto;
         text-align: center;
         padding: 10px;
+        padding-bottom: 0;
         box-sizing: border-box;
         .facebook_login{
           display: inline-block;
@@ -333,6 +334,9 @@ export default class InsLoginN extends Vue {
                 justify-content: space-between;
             }
         }
+    }
+    /deep/ .input_outer{
+      padding-top: 10px;
     }
 }
 </style>

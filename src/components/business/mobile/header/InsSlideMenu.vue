@@ -89,8 +89,8 @@ export default class InsSlideMenu extends Vue {
 <style scoped lang="less">
 .drawer-bg {
   width: 100%;
-  top: 0;
-  height: 100%;
+  top: 0 !important;
+  height: 100% !important;
   position: fixed;
   z-index: 999;
 }
@@ -105,8 +105,9 @@ export default class InsSlideMenu extends Vue {
   z-index: 1000;
 
   &.left {
-    top: 0;
+    top: 0 !important;
     left: 0;
+    height: 100% !important;
 
     &.hiddenMenu {
       transform: translate3d(-100%, 0, 0);

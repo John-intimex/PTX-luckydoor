@@ -5,9 +5,9 @@
           <div v-html="htmlString" class="to_vertical" id="content"></div>
           <div id="preview" display="none"></div>
         </div>
-        <div style="text-align:center;font-size:2.5rem;">
+        <!-- <div style="text-align:center;font-size:2.5rem;">
           @Powered by RegNPay InStore
-        </div>
+        </div> -->
       </div>
 
     </div>

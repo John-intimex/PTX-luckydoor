@@ -1,24 +1,27 @@
 <template>
   <div id="container" class="PcContact">
   <!-- 联络我们页面 -->
-    <div class="Cmsbg" v-if="NewcateId=='40112'">
+    <div class="Cmsbg" v-if="NewcateId=='40118'">
       <transition name="slide">
         <div key="1" v-if="!waiting" style="display:flex;">
-           <div class="DetailTitle"><img :src="ImgList" v-show="ImgList!==null"><div class="TitleBg"><div class="innerBoxText">{{CateName}}</div></div></div>
+           <div class="DetailTitle">
+            <img :src="ImgList" v-show="ImgList!==null">
+            <!-- <div class="TitleBg"><div class="innerBoxText">{{CateName}}</div></div> -->
+            </div>
       </div>
       </transition>
       <transition name="slide">
         <div class="faker" key="2" v-if="waiting" v-loading="true"></div>
       </transition>
-      <div class="CmsContent">
-        <div class="MapInfo">
+      <div class="CmsContent" style="margin-bottom: 0;">
+        <!-- <div class="MapInfo">
           <p class="OurStores">{{$t('Cms.OurStores')}}</p>
           <p class="BusinessHours">{{$t('Cms.BusinessHours')}}: 07:30 - 19:00</p>
           <p v-html="MapInfo" ></p>
-        </div>
+        </div> -->
           <div class="CmsMap">
             <p v-html="content.Body" class="cmsbody"></p>
-            <p class="addressIcon"><i></i>{{$t('home.Address')}}：</p>
+            <!-- <p class="addressIcon"><i></i>{{$t('home.Address')}}：</p>
             <div class="addressBox">
             <div class="perList" v-for="(val,index) in ShopList" :key="index" v-on:click="showContent(val.Id,index)" :class="{'activeColor':cindex==index}">
                 <div class="icon"><i></i></div>
@@ -28,36 +31,53 @@
                   <p>{{val.DescTwo}}</p>
                 </div>
               </div>
-            </div>
+            </div> -->
+          </div>
+          <div class="FormMain">
+            <!-- <p class="FormTitle">{{FormTitle}}</p> -->
+            <div v-html="htmlString" class="to_vertical" id="content"></div>
+            <div id="preview" style="display:none;"></div>
           </div>
          <div class="clear"></div>
-      </div>
-      <div class="borderline"></div>
-        <div class="FormMain">
-          <p class="FormTitle">{{FormTitle}}</p>
-          <div v-html="htmlString" class="to_vertical" id="content"></div>
-          <div id="preview" style="display:none;"></div>
+         <div class="maps">
+          <p v-html="mapscontent.Body"></p>
         </div>
+      </div>
+      <!-- <div class="borderline"></div> -->
+
     </div>
     <!-- 其他页面 -->
-    <div class="CmsNormal" v-if="NewcateId!='40112'">
+    <div class="CmsNormal" v-if="NewcateId!='40118'">
       <transition name="slide">
-        <div key="1" v-if="!waiting" style="display:flex;">
-            <div class="DetailTitle"><img :src="ImgList" v-show="ImgList!==null"><div class="TitleBg"><div class="innerBoxText">{{TitleName}}</div></div></div>
+        <div key="1" v-if="!waiting" >
+            <div class="DetailTitle">
+              <img :src="OtherPageImg" v-if="ImgList!==null">
+              <div class="TitleBg" v-else><div class="innerBoxText">{{TitleName}}</div></div>
+            </div>
+            <div v-if="cmsId === 20322">
+              <div class="CmsContentbox">
+                <p v-html="content.Body"></p>
+              </div>
+            </div>
+            <div v-else>
+              <div class="CmsContent">
+                <p v-html="content.Body"></p>
+              </div>
+            </div>
+
       </div>
       </transition>
       <transition name="slide">
         <div class="faker" key="2" v-if="waiting" v-loading="true"></div>
       </transition>
-      <div class="CmsContent">
-        <p v-html="content.Body"></p>
-      </div>
+
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import Cookie from 'js-cookie';
+import Result from '@/views/pc/InsRegAndPayResult.vue';
 @Component({
   components: {
     PkcmsBanner: () => import('@/components/hkTasteBusiness/pc/cms/PkcmsBanner.vue')
@@ -84,7 +104,8 @@ export default class InsCmsContent extends Vue {
   private waiting: boolean = true;
   OtherPageImg:string='';
   TitleName:string='';
-
+  mapscontent: string='';
+  cmsId:string='';
   getForm () {
     this.$Api.regAndPay.getHtml('ContactUs', this.lang, false).then(result => {
       this.htmlString = result.HtmlString;
@@ -177,19 +198,26 @@ export default class InsCmsContent extends Vue {
     this.getIndexshop();
     this.showContent(20288, 0);
     this.Regnay();
+    this.getmaps();
   }
   getContent () {
-    this.$Api.cms.getContentByDevice({ Key: this.id, ContentId: this.id, IsMobile: true }).then(result => {
+    this.$Api.cms.getContentByDevice({ Key: this.id, ContentId: this.id, IsMobile: false }).then(result => {
     this.content = result.CMS;
     this.TitleName = result.CMS.Title;
     this.OtherPageImg = result.CMS.Cover;
     this.NewcateId = result.CMS.CatId;
     this.getCategoryByDevice(result.CMS.CatId);
     this.CateDesc = result.CMS.Desc;
+    this.cmsId = result.CMS.Id;
     this.waiting = false;
     if (result.CMS.Title) document.title = result.CMS.Title;
   });
 }
+  getmaps() {
+    this.$Api.cms.getContentByDevice({ Key: 'maps', IsMobile: false }).then(result => {
+      this.mapscontent = result.CMS;
+    });
+  }
   // 根据设备类型获取CMSCategory信息
   getCategoryByDevice (cateId) {
       this.$Api.cms.getCategoryByDevice({ CatId: cateId, IsMobile: false }).then(async (result) => {
@@ -208,6 +236,7 @@ export default class InsCmsContent extends Vue {
   @Watch('$route', { deep: true })
   onIdChange () {
     this.getContent();
+    this.getmaps();
   }
   mounted () {
     window['regAndPay'] = this.$Api.regAndPay;
@@ -303,11 +332,15 @@ export default class InsCmsContent extends Vue {
   }
 }
 .PcContact .FormMain{
-  width:1200px;
-  margin:0 auto;
-  padding-bottom: 3rem;
+  width:50%;
+  float: left;
+  // padding-bottom: 3rem;
   position: relative;
-  padding-top: 3rem;
+  // padding-top: 3rem;
+  background-color: #f8f6f5;
+  padding: 40px 50px;
+  box-sizing: border-box;
+  margin-bottom: 60px;
   .FormTitle{
     font-size: 40px;
     margin-top: 20px;
@@ -348,31 +381,35 @@ export default class InsCmsContent extends Vue {
       width: 40%;
     }
   }
+  .col-md-10{
+    text-align: center;
+  }
   .btn-default{
-      width: 20%;
-      float: right;
-      background: #666666;
-      height: 3.5rem;
-      line-height: 3.5rem;
+      width: 160px;
+      margin: 0 auto;
+      background: #112a4d;
+      height: 48px;
+      line-height: 48px;
       color:#fff;
       background-size: 100%;
       border:none;
-      margin-top: 1rem;
-      font-size: 1.4rem;
-      margin-bottom: 5rem;
-      border-radius: 2px;
+      margin-top: 0;
+      font-size: 18px;
+      // margin-bottom: 5rem;
+      border-radius: 6px;
+      letter-spacing: 2px;
   }
   #Anwers{
     position: relative;
   .form-group{
-    width: 50%;
-    display: inline-block;
-    &:nth-child(3){
-      position: absolute;
-      width: 50%;
-      right: 0px;
-      top:0px;
-    }
+    width: 100%;
+    display: block;
+    // &:nth-child(3){
+    //   position: absolute;
+    //   width: 50%;
+    //   right: 0px;
+    //   top:0px;
+    // }
     .fieldset{
       border:none;
       padding: 0px;
@@ -389,28 +426,34 @@ export default class InsCmsContent extends Vue {
       margin-bottom: .5rem;
       border:1px solid #808080;
       border-radius: 2px;
+      display: none;
     }
     input[type="text"],input[type="email"]{
-      border:1px solid #808080;
-      height: 3.5rem;
-      line-height: 3.5rem;
-      width: 70%;
+      border:1px solid #999999;
+      height: 48px;
+      line-height: 48px;
+      width: 100%;
       box-sizing: border-box;
-      border-radius: 2px;
+      // border-radius: 2px;
       margin-bottom: .5rem;
-      text-indent: 1rem;
+      // text-indent: 1rem;
       outline: none;
-      font-size: 1.4rem;
+      font-size: 18px;
+      color: #cccccc;
+      padding: 16px 20px;
     }
     textarea{
-      border:1px solid #808080;
+      border:1px solid #999999;
       height: 12rem;
       width: 100%;
       box-sizing: border-box;
-      border-radius: 2px;
+      // border-radius: 2px;
       margin-bottom: .5rem;
       outline: none;
-      font-size: 1.4rem;
+      font-size: 18px;
+      padding: 16px 20px;
+      font-family: Arial;
+      color: #cccccc;
     }
     p[name="error"]{
       color:red;
@@ -422,7 +465,13 @@ export default class InsCmsContent extends Vue {
 .PcContact .CmsContent{
     position: relative;
     width: 1200px;
-    margin: 3rem auto;
+    margin: 80px auto;
+    .maps{
+       iframe{
+        display: block;
+        border: none;
+      }
+    }
    .aboutUSImg{
      width:10%;
      float:left;
@@ -478,6 +527,84 @@ export default class InsCmsContent extends Vue {
       width:50%;
     }
   }
+  .top{
+    width: 1120px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    tr{
+      display: flex;
+      td:nth-child(2){
+        width: 478px;
+        height: 400px;
+        // display: block;
+        img{
+          display: block;
+          width: 100%;
+        }
+      }
+      td.back{
+        padding: 70px 30px;
+        padding-bottom: 30px;
+        // display: block;
+        background-color: #edf0f4;
+        width: 638px;
+        box-sizing: border-box;
+        position: relative;
+        height: 400px;
+        p{
+          color: #112a4d;
+        font-size: 22px;
+        line-height: 26px;
+
+        }
+        img{
+          position: absolute;
+          left: 30px;
+          top: -30px;
+         }
+      }
+    }
+  }
+  .bottom{
+    width: 100%;
+    display: block;
+    border-collapse: collapse;
+    tr{
+      td{
+        width: 50%;
+        &.blue{
+          padding: 40px;
+          background-color: #112a4d;
+          box-sizing: border-box;
+          p{
+            color: #fff;
+            font-size: 18px;
+            line-height: 24px;
+          }
+          h2{
+            margin-bottom: 12px;
+            color: #fff;
+            font-size: 28px;
+          }
+        }
+        &.white{
+          padding: 40px;
+          background-color: #f8f6f5;
+          box-sizing: border-box;
+          p{
+            color: #112a4d;
+            font-size: 18px;
+            line-height: 24px;
+          }
+          h2{
+            margin-bottom: 12px;
+            color: #112a4d;
+            font-size: 28px;
+          }
+        }
+      }
+    }
+  }
 }
 </style>
 <style scoped lang="less">
@@ -496,20 +623,23 @@ export default class InsCmsContent extends Vue {
   justify-content: center;
   img{
     width: 100%;
+    display: block;
   }
   .TitleBg{
-    width: 500px;
-    border: 1px solid #ffffff;
+    width: 90%;
+    // border: 1px solid #ffffff;
     height: 70px;
-    line-height: 70px;
+    // line-height: 70px;
+    display: flex;
+    align-items: center;
     margin: 0 auto;
-    padding: 10px;
+    // padding: 10px;
     margin-bottom: 20px;
-    top: 50%;
-    position: absolute;
-    transform: translateY(-50%);
+    // top: 50%;
+    // position: absolute;
+    // transform: translateY(-50%);
     .innerBoxText{
-      background:#ffffff;
+      // background:#ffffff;
       color: #333333;
       display: flex;
       align-items: center;
@@ -523,9 +653,76 @@ export default class InsCmsContent extends Vue {
 
 .CmsNormal{
   width: 100%;
-  display: inline-block;
+  display: block;
   background: #FFF;
-  padding-bottom: 5rem;
+  // padding-bottom: 5rem;
+  .CmsContentbox{
+    /deep/ .Process_list{
+      .back1{
+        width: 100%;
+        height: 540px;
+        background: url('/images/pc/ProductProcessback_02.jpg') no-repeat center center;
+        background-size: cover;
+
+        li{
+          width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          padding: 98px 58px 98px 64px;
+          box-sizing: border-box;
+          .text{
+            padding-right: 162px;
+            box-sizing: border-box;
+            img{
+              display: block;
+              margin-left: 50px;
+            }
+            h2{
+              font-size: 36px;
+              color: #9c4499;
+              margin-top: 24px;
+              margin-bottom: 18px;
+            }
+            p{
+              font-size: 24px;
+              color: #666666;
+              line-height: 28px;
+            }
+          }
+        }
+      }
+      .back2{
+        width: 100%;
+        height: 540px;
+        background: url('/images/pc/ProductProcessback_03.jpg') no-repeat center center;
+        background-size: cover;
+
+        li{
+          width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          padding: 98px 64px 98px 58px;
+          box-sizing: border-box;
+          .text{
+            padding-left: 96px;
+            box-sizing: border-box;
+            img{
+              display: block;
+              margin-left: 50px;
+            }
+            h2{
+              font-size: 36px;
+              color: #6848a2;
+              margin-top: 24px;
+              margin-bottom: 18px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 .TitleBg{
   width: 500px;
@@ -549,17 +746,12 @@ export default class InsCmsContent extends Vue {
 }
 .Cmsbg{
     width:100%;
-    background: url('/images/pc/pccontact_01.jpg') no-repeat center center;
-    background-size:100% 100%;
-    display: block;
-    box-sizing: border-box;
-    display: inline-block;
-    .borderline{
-      height:1px;
-      width: 100%;
-      display: inline-block;
-      background: #000;
-   }
+  //   .borderline{
+  //     height:1px;
+  //     width: 100%;
+  //     display: inline-block;
+  //     background: #000;
+  //  }
 }
 .Banner {
   width: 100%;
@@ -579,10 +771,12 @@ export default class InsCmsContent extends Vue {
 .CmsMap {
     width: 50%;
     float: left;
-    margin-left: 5%;
+    // margin-left: 5%;
     display: flex;
     flex-wrap: wrap;
-    padding-top: 5rem;
+    // padding-top: 5rem;
+    padding: 82px 88px 8px 22px;
+    box-sizing: border-box;
     .cmsbody{
       width:100%;
     }
@@ -591,6 +785,38 @@ export default class InsCmsContent extends Vue {
       float: left;
       display: flex;
       flex-wrap: wrap;
+    }
+    .cmsbody{
+      /deep/ .contact_box{
+        ul{
+          li{
+            border-bottom: 1px solid #cccccc;
+            display: flex;
+            padding-bottom: 42px;
+            margin-bottom: 42px;
+            &:last-child{
+              border-bottom: none;
+            }
+            .img{
+              margin-right: 12px;
+              img{
+                display: block;
+              }
+            }
+            .text{
+              color: #112a4d;
+              font-size: 20px;
+              font-weight: bold;
+              p{
+                font-size: 18px;
+                margin-top: 5px;
+                font-weight: 500;
+                line-height: 20px;
+              }
+            }
+          }
+        }
+      }
     }
 }
 

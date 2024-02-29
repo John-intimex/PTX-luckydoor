@@ -63,7 +63,7 @@
     </div>
     <!-- 议价模式 -->
       <div class="in_panel_footer" v-if="panelDetail.negotiable == true && panelDetail.negotiateMinQty==panelDetail.MinPurQty">
-        <p class="productTips">{{$t('Message.AskFor')}}</p>
+        <!-- <p class="productTips">{{$t('Message.AskFor')}}</p> -->
         <button type="button" @click="AddProdToMyEnquiry()" class="CartBtn">{{$t('Enquiry.AddToEnquiry')}}</button>
     </div>
 
@@ -393,22 +393,35 @@ export default class InsPanel extends Vue {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 1rem;
-      background: #333;
+      // margin-bottom: 1rem;
+      background: #f5ad2a;
       background-size:cover;
       width: 100%;
       color: #fff;
-      margin-left: 0px!important;
-      border: 5px;
-        &:disabled{
-          cursor:not-allowed;
-          background: #ccc;
-          border: 1px solid #ccc;
-          color: #333333;
-           &:hover{
-           transform: translateY(0px)!important;
-          }
+      // margin-left: 0px!important;
+      // border: 5px;
+      border: none;
+      &::before{
+          content: '';
+    width: 2.5rem;
+    height: 2.5rem;
+    background: url(/images/pc/details_07.png) no-repeat center center;
+    display: block;
+    background-size: cover;
+    margin-right: 1rem;
+          // position: absolute;
+          // top: 50%;
+          // left: ;
         }
+        // &:disabled{
+        //   cursor:not-allowed;
+        //   background: #ccc;
+        //   border: 1px solid #ccc;
+        //   color: #333333;
+        //    &:hover{
+        //    transform: translateY(0px)!important;
+        //   }
+        // }
       }
       .BuyBtn{
       height: 3.5rem;

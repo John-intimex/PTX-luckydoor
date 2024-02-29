@@ -1,47 +1,48 @@
 <template>
   <!-- 商品推荐开始 -->
     <div class="indexMiddle">
+      <div class="TitleBg">
+        <img src="/images/pc/pcindex_39.png" alt="">
+      </div>
     <div class="indexRecommend">
-      <div class="indexRecommendInner">
+
+      <!-- <div class="indexRecommendInner">
         <div class="RecommendText">{{Title1}}</div>
         <div class="RecommendBg">
             <swiper :options="swiperOptionT1">
-              <!-- slides -->
                 <swiperSlide v-for="(slide, index1) in banner1" :key="index1" >
                   <router-link :to="slide.Url"><img :src="slide.Image" /></router-link>
                 </swiperSlide>
             </swiper>
         </div>
         <p>{{content1}}</p>
-      </div>
-      <div class="indexRecommendInner">
+      </div> -->
+      <!-- <div class="indexRecommendInner">
            <div class="RecommendText">{{Title2}}</div>
           <div class="RecommendBg">
             <swiper :options="swiperOptionT1">
-              <!-- slides -->
               <swiperSlide v-for="(slide, index2) in banner2" :key="index2">
                 <router-link :to="slide.Url"><img :src="slide.Image" /></router-link>
               </swiperSlide>
             </swiper>
         </div>
         <p>{{content2}}</p>
-      </div>
-      <div class="indexRecommendInner">
+      </div> -->
+      <!-- <div class="indexRecommendInner">
          <div class="RecommendText">{{Title3}}</div>
         <div class="RecommendBg">
             <swiper :options="swiperOptionT1">
-              <!-- slides -->
               <swiperSlide v-for="(slide, index3) in banner3" :key="index3">
                 <router-link :to="slide.Url"><img :src="slide.Image" /></router-link>
               </swiperSlide>
             </swiper>
         </div>
         <p>{{content3}}</p>
-      </div>
+      </div> -->
     <!-- 商品推荐结束 -->
     <div class="clear"></div>
     <!-- 限时平卖开始 -->
-    <HkHotProduct />
+    <!-- <HkHotProduct /> -->
     <!-- 限时平卖结束 -->
   </div>
 </div>
@@ -123,7 +124,7 @@ export default class HkPromotion extends Vue {
     });
   }
   created () {
-    this.getHeaderBannerLst();
+    // this.getHeaderBannerLst();
   }
   get lang () {
     return this.$Storage.get('locale');
@@ -148,15 +149,15 @@ export default class HkPromotion extends Vue {
   font-size: 30px;
 }
 .indexMiddle{
-    min-height: 1122px;
+    // min-height: 1122px;
     width: 100%;
-    background: url('/images/pc/pcindex_01.jpg') no-repeat center center;
+    // background: url('/images/pc/pcindex_01.jpg') no-repeat center center;
     background-size: 100% 100%;
     display: inline-block;
-    padding-top: 125px;
-    padding-bottom: 160px;
+    padding-top: 80px;
+    padding-bottom: 78px;
     position: relative;
-    margin-top: -5px;
+    // margin-top: -5px;
     background-size: cover;
 }
 .indexRecommend{
@@ -229,5 +230,8 @@ export default class HkPromotion extends Vue {
     padding-top: 20px;
     padding-bottom: 20px;
     display: block;
+}
+.TitleBg{
+  text-align: center;
 }
 </style>

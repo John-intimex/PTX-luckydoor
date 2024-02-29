@@ -9,7 +9,7 @@
             </div>
             <div class="rightpart" v-if="this.$Settings.version !== 1">
               <div class="in_pannel_addtofav"  v-if="!panelDetail.negotiable"><img :src="panelDetail.IsFavorite ? '/images/mobile/faved.png': '/images/mobile/unfav.png'" @click="addFavorite"/>{{$t('Message.Fav')}}</div>
-              <p class="HkProductShare"><HkProductShare></HkProductShare>{{$t("Action.Share")}}</p>
+              <p class="HkProductShare">{{$t("Action.Share")}} <HkProductShare></HkProductShare></p>
             </div>
         </div>
     </div>
@@ -21,16 +21,42 @@
     <div class="in_unitInfo" v-if="panelDetail.UnitInfo.Desc!==null">{{$t('product.Unit')}}:{{panelDetail.UnitInfo.Desc}}</div>
     <div class="productPtx"  v-if="panelDetail.negotiable ">
         <div class="productInfo">
-          <p class="TitleBg"><span>{{$t('Message.ProductInformation')}}</span></p>
+          <p class="TitleBg"><span>{{$t('Enquiry.ProductInformation')}}</span></p>
           <div class="InnerTable">
-            <p class="perline"><span class="left">{{$t('Enquiry.MinOrderQty')}}</span><span class="right">{{panelDetail.MinPurQty}}</span></p>
-            <p class="perline"><span class="left">{{$t('Enquiry.negotiateMinQty')}}</span><span class="right">{{panelDetail.negotiateMinQty}}</span></p>
+            <!-- <p class="perline"><span class="left">{{$t('Enquiry.MinOrderQty')}}</span><span class="right">{{panelDetail.MinPurQty}}</span></p> -->
+            <!-- <p class="perline"><span class="left">{{$t('Enquiry.negotiateMinQty')}}</span><span class="right">{{panelDetail.negotiateMinQty}}</span></p> -->
             <p class="perline"><span class="left">{{$t("product.ProductCode")}}</span><span class="right">{{panelDetail.Code}}</span></p>
             <p class="perline"><span class="left">{{$t('Message.Catalog')}}</span>
             <span class="right">
-              <router-link to="/" class="NormalColor">{{$t('Message.HomeTips')}}</router-link> > <span v-for="(v,index) in panelDetail.CatalogTree" :key="index"><router-link class="redColor" :to="'/product/search/-?' + 'catalogs=' + JSON.stringify([v.Id]) + '&type=0'" v-if="v.ParentId!=0">{{v.Name}}</router-link></span>
+              <!-- <router-link to="/" class="NormalColor">{{$t('Message.HomeTips')}}</router-link> >  -->
+              <span v-for="(v,index) in panelDetail.CatalogTree" :key="index"><router-link class="redColor" :to="'/product/search/-?' + 'catalogs=' + JSON.stringify([v.Id]) + '&type=0'" v-if="v.ParentId!=0">{{v.Name}}</router-link></span>
             </span>
             </p>
+          </div>
+        </div>
+        <div class="productInfo">
+          <p class="TitleBg"><span>{{$t('Enquiry.ProductPackingInformation')}}</span></p>
+          <div class="InnerTable">
+            <p class="perline"><span class="left">{{$t('Enquiry.SingleUnitpcs')}}</span>
+            <span class="right">
+              {{panelDetail.UnitInfo.Desc}}
+              <!-- pcs -->
+              </span>
+            </p>
+            <p class="perline"><span class="left">{{$t('Enquiry.Dimension')}}</span><span class="right">{{panelDetail.PackagingInfo}}</span></p>
+            <p class="perline">
+              <span class="left">{{$t("Enquiry.Package")}}</span>
+              <!-- <span class="right">{{panelDetail.Permission}}</span> -->
+            </p>
+          </div>
+        </div>
+        <div class="productInfo">
+          <p class="TitleBg"><span>{{$t('Enquiry.ExportCarton')}}</span></p>
+          <div class="InnerTable">
+            <p class="perline"><span class="left">{{$t('Enquiry.PcsperCarton')}}</span>
+            <!-- <span class="right">{{panelDetail.Width}}</span> -->
+            </p>
+            <p class="perline"><span class="left">{{$t("Enquiry.CtnDimension")}}</span><span class="right">{{panelDetail.ProductDimension}}</span></p>
           </div>
         </div>
         <div class="productInfo">
@@ -129,8 +155,14 @@ export default class PkProductInfo extends Vue {
 .in_panel_product .ProductCode .leftpart{
     width:75%;
     float: left;
-    font-size: 26px;
-    padding-top: .5rem;
+    font-size: 28px;
+    padding-top: 15px;
+    margin-bottom: 20px;
+    p{
+      color: #333333;
+      font-weight: bold;
+      font-size: 28px;
+    }
 }
 .in_panel_product .ProductCode .rightpart{
     width: 23%;
@@ -164,35 +196,55 @@ export default class PkProductInfo extends Vue {
   display: inline-block;
   margin-bottom: 1rem;
   .TitleBg {
-    height: 3rem;
-    line-height: 3rem;
-    background: #cab597;
+    height: 48px;
+    line-height: 48px;
+    background: #f8f8f8;
+    width: 100%;
     span {
-      width: 90%;
-      margin: 0 auto;
-      font-size:22px;
+      width: 272px;
+      height: 48px;
+      // margin: 0 auto;
+      font-size:20px;
       display: flex;
       flex-wrap: wrap;
       color: #fff;
+      background-color: #112a4d;
+      padding-left: 18px;
+      position: relative;
+      &::after{
+        content: '';
+        width: 0;
+        height: 0;
+        border-bottom: 48px solid #112a4d;
+        border-right: 42px solid transparent;
+        position: absolute;
+        right: -42px;
+        top: 0;
+      }
     }
   }
   .InnerTable {
-    width: 90%;
+    width: 94%;
     margin: 0 auto;
     .perline {
       width: 100%;
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 1rem;
+      // justify-content: space-between;
+      margin-top: 14px;
       .left{
-        width: 48%;
+        width: 38%;
         font-size:20px;
+        color: #333333;
       }
       .right {
-        width: 48%;
+        width: 60%;
         font-size:20px;
-        color:#333;
+        color:#999999;
+        a{
+          font-size:20px;
+          color:#999999;
+        }
       }
     }
   }
@@ -269,6 +321,9 @@ export default class PkProductInfo extends Vue {
   flex-wrap: wrap;
   align-items: center;
   margin-top: 10px;
+  height: 40px;
   justify-content: flex-end;
+  color: #666666;
+  font-size: 20px;
 }
 </style>

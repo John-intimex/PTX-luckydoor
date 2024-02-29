@@ -1,18 +1,28 @@
 <template>
     <div>
-        <div class="header_logo" v-if="!this.$Settings.slideMenu.Embedded">
-            <i class="el-icon-close" @click="closeSlideMenu"></i>
+        <div class="header_logo">
+          <div class="left">
+            <ins-login />
+            <router-link to="/account/GetEnquiry">
+              <i class="handle-icon ptxicon"></i>
+            </router-link>
+          </div>
+          <div class="right">
+            <!-- <i class="el-icon-close" @click="closeSlideMenu"></i> -->
+            <img class="close-meun" src="/images/mobile/out.png" @click="closeSlideMenu"/>
+          </div>
+
         </div>
 
         <div class="search-box">
-            <el-select v-model="searchType" placeholder="please select">
+            <!-- <el-select v-model="searchType" placeholder="please select">
                 <el-option
                 v-for="item in typeList"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value">
                 </el-option>
-            </el-select>
+            </el-select> -->
 
             <div class="search-input">
                 <input type="text" v-model="key" @keyup.enter="search" />
@@ -33,7 +43,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
   components: {
     InsLogo: () => import('@/components/base/mobile/InsLogo.vue'),
     Menu: () => import('@/components/business/mobile/header/InsElMenu.vue'),
-    InsLangSwitch: () => import('@/components/business/mobile/header/InsLangSwitch.vue')
+    InsLangSwitch: () => import('@/components/business/mobile/header/InsLangSwitch.vue'),
+    InsLogin: () => import('@/components/business/mobile/header/InsLogin.vue')
   }
 })
 export default class InsMenuLayout extends Vue {
@@ -62,14 +73,15 @@ export default class InsMenuLayout extends Vue {
   }
 
   search () {
-    switch (this.searchType) {
-      case 0:
-        this.searchPro();
-        break;
-      case 1:
-        this.searchCms();
-        break;
-    }
+    // switch (this.searchType) {
+    //   case 0:
+    //     this.searchPro();
+    //     break;
+    //   case 1:
+    //     this.searchCms();
+    //     break;
+    // }
+    this.searchPro();
   }
 
   searchPro () {
@@ -89,6 +101,7 @@ export default class InsMenuLayout extends Vue {
         path: '/product/search/-'
       });
     }
+    this.key = '';
   }
 
   searchCms () {
@@ -108,6 +121,9 @@ export default class InsMenuLayout extends Vue {
 
   get isLogin () {
     return this.$store.state.isLogin;
+  }
+  mounted() {
+
   }
 }
 </script>
@@ -164,12 +180,14 @@ export default class InsMenuLayout extends Vue {
     }
 
     .el-menu {
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
         background-color: transparent;
         border: 0;
         margin-bottom: 1rem;
         margin-top: 1rem;
+        padding: 0 1.5rem;
+        box-sizing: border-box;
         .el-submenu__icon-arrow {
             display: block;
             font-size: 1.6rem;
@@ -181,35 +199,48 @@ export default class InsMenuLayout extends Vue {
             text-align: center;
             margin-bottom: 1rem;
              >a {
-                 color:#666666;
+                 color:#112a4d;
                  background: #fff;
                  background-size: 100% 100%;
                  display:block;
                  width: 100%;
-                 padding-top: .8rem;
-                 padding-bottom: .8rem;
+                 padding-top: 1rem;
+                 padding-bottom: 1rem;
                  margin: 0 auto;
-                 border:1px solid #666666;
+                 border:2px solid #112a4d;
                  font-weight: 500;
+                 border-radius: 8px;
+                 box-sizing: border-box;
                  b{
-                     color:#FFF;
                      display: block;
                      width: 100%;
                      font-weight: 500;
-                     &:nth-child(1){
-                        color:#666666;
-                        font-weight: 500;
-                        font-size: 1.6rem;
-                     }
-                     &:nth-child(2){
-                         color:#262626;
-                         font-size: 1.2rem;
-                     }
+                     color:#112a4d;
+                    font-size: 1.6rem;
+                    letter-spacing: 2px;
+                    //  &:nth-child(1){
+                    //     color:#666666;
+                    //     font-weight: 500;
+                    //     font-size: 1.6rem;
+                    //  }
+                    //  &:nth-child(2){
+                    //      color:#262626;
+                    //      font-size: 1.2rem;
+                    //  }
                  }
             }
 
             a {
                 text-decoration: none;
+            }
+            &:hover{
+              a{
+                border: 2px solid #f6c72b;
+                background-color: #f6c72b;
+                b{
+                 color: #fff;
+                }
+              }
             }
         }
 
@@ -234,14 +265,17 @@ export default class InsMenuLayout extends Vue {
 
 <style scoped lang="less">
 .search-box {
-    width: 90%;
+    width: 100%;
     height: 4rem;
     margin: 0 auto;
-    margin-top: 3rem;
+    margin-top: 1rem;
     position: relative;
     overflow: hidden;
-    margin-bottom: 2rem;
-    border: 1px solid #666666;
+    margin-bottom: 1rem;
+    padding: 0 1.5rem;
+    padding-bottom: 1rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid #999999;
 
   /deep/ .el-select {
     width: 30%;
@@ -265,22 +299,32 @@ export default class InsMenuLayout extends Vue {
 
   .search-input {
     width: 100%;
-    height: 100%;
+    margin: 0 auto;
+
+    box-sizing: border-box;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #9d9d9d;
+    border-radius: 8px;
+    padding-left: 1rem;
+    position: relative;
+    overflow: hidden;
 
     > input {
         width: 100%;
         height: 100%;
         border: 0;
-        padding: 0 20% 0 35%;
+        // padding: 0 20% 0 35%;
         box-sizing: border-box;
         font-size: 1.2rem;
         outline: none;
     }
 
     .searchBtn{
-        width: 4rem;
-        height: 4rem;
-        background: #666666;
+        width: 3rem;
+        height: 3rem;
+        // background: #666666;
         display: inline-block;
         cursor: pointer;
         position: absolute;
@@ -290,25 +334,26 @@ export default class InsMenuLayout extends Vue {
         align-items: center;
         justify-content: center;
         img{
-            width: 50%;
+            width: 60%;
             margin: 0 auto;
             display: block;
+            margin-right: 1rem;
         }
     }
   }
 }
 .header_logo {
-    height: 7rem;
+    height: 5rem;
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1rem 0 1.5rem;
-    border-bottom: 4px solid #acbd30;
-    background-color: #fff;
+    padding: 0 1.5rem 0 1.5rem;
+    // border-bottom: 4px solid #acbd30;
+    background-color: #112a4d;
 
     .el-icon-close {
-        color: #777777;
+        color: #fff;
         font-size: 2.8rem;
     }
 
@@ -318,6 +363,29 @@ export default class InsMenuLayout extends Vue {
 
     .slide-menu {
         cursor: pointer;
+    }
+    .ptxicon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: url('/images/mobile/ptx.png') no-repeat center center;
+      background-size: contain;
+      display: inline-block;
+      margin-left: .5rem;
+    }
+    .left{
+      display: flex;
+      /deep/ .memberlogin{
+        .menberCentral{
+          margin-right: 0.5rem;
+          height: auto;
+        }
+      }
+    }
+    .right{
+      img{
+        width: 1.5rem;
+        display: block;
+      }
     }
 }
 

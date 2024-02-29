@@ -10,15 +10,18 @@
         <div class="next" @click="getGetProductDown()">{{$t('Message.Next')}}<i class="img"></i></div>
     </div>
     <div class="productDetail_main">
-      <inPreview style="width:50%" :imgList="ImgList" :pageNum="userAgent === 'mobile' ?  1 : 4" :ProductTitleName="ProductTitleName"></inPreview>
-      <div style="width:45%;margin-left:5%;float:right;">
+      <inPreview style="width:520px" :imgList="ImgList" :pageNum="userAgent === 'mobile' ?  1 : 4" :ProductTitleName="ProductTitleName"></inPreview>
+      <div style="width:560px;float:right;">
           <PkProductInfo :panelDetail.sync="PanelDetail"  :ProductSku="ProductCode" width="100%" :AddPrice="getNewsPrice" style="margin-bottom: 2rem;"></PkProductInfo>
           <inPanel :panelDetail.sync="PanelDetail" :ProductSku="ProductCode" @getPrice="showPrice" width="100%"></inPanel>
       </div>
     </div>
     <div class="tab_warpper" v-if="PanelDetail.negotiable">
       <div class="tab_header">
-        <div class="detail_title">{{$t('product.ProductIntroduction')}}</div>
+        <div class="detail_title">
+          <!-- {{$t('product.ProductIntroduction')}} -->
+          <img src="/images/pc/details_11.png" alt="">
+        </div>
       </div>
       <div class="clear"></div>
       <div class="product_detail" v-html="Tabs.Detail" v-show="IsDetail && Tabs.Detail!=''"></div>
@@ -78,7 +81,7 @@ import ProductListSwiper from '@/components/hkTasteBusiness/pc/product/HkProduct
 export default class InsProductDetail extends Vue {
   private Slider: YouWouldLike[] = [];
   private Tabs: Tab[] = [new Tab('none')];
-  private PanelDetail: PanelDetail = new PanelDetail('', '', '', '', 0, 0, 0, 0, '', '', '', '');
+  private PanelDetail: PanelDetail = new PanelDetail('', '', '', '', '', '', 0, 0, 0, 0, '', '', '', '');
   private Src: string = '';
   private IsDetail:boolean = true;
   private ImgList: string[] = [];
@@ -293,6 +296,10 @@ export default class InsProductDetail extends Vue {
   display: block;
   .tab_warpper{
     margin-top: 50px;
+    box-shadow: 0 0 5px #e9e9e9;
+    padding: 30px 60px;
+    padding-bottom: 60px;
+    box-sizing: border-box;
     .tab_header{
       display: inline-block;
       width: 100%;
@@ -330,37 +337,40 @@ export default class InsProductDetail extends Vue {
           }
         }
       .detail_title{
-          width: 350px;
+          // width: 350px;
           margin: 0 auto;
-          background: #b19162;
+          // background: #b19162;
           background-size: 100% 100%;
           text-align: center;
           font-size: 24px;
           color: #fff;
-          height: 50px;
-          line-height: 50px;
+          // height: 50px;
+          // line-height: 50px;
+          margin-bottom: 40px;
       }
     }
     .product_detail{
-      padding: 1rem;
+      padding: 30px 60px;
+      box-sizing: border-box;
       display: block;
       clear: both;
       min-height: 300px;
       border-radius: 5px;
       font-size: 20px;
       color:#333333;
+      background-color: #f8f6f5;
       h3 {
         font-size: 20px;
         color:#333333;
         font-weight: 500;
       }
       /deep/ p{
-        font-size: 20px;
-        color:#333333;
+        font-size: 22px;
+        color:#112a4d;
      }
      /deep/ span{
-        font-size: 20px!important;
-        color:#333333;
+        font-size: 22px!important;
+        color:#112a4d;
      }
     }
   }
@@ -416,12 +426,16 @@ export default class InsProductDetail extends Vue {
       height: 15px;
       margin-left: .5rem;
       margin-right: .5rem;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
     }
-    &:hover {
-      .img {
-        background: url('/images/mobile/pre_hover.png') no-repeat center center!important;
-      }
-    }
+    // &:hover {
+    //   .img {
+    //     background: url('/images/mobile/pre_hover.png') no-repeat center center!important;
+    //   }
+    // }
   }
   .next {
     .img {
@@ -431,26 +445,34 @@ export default class InsProductDetail extends Vue {
       height: 15px;
       margin-left: .5rem;
       margin-right: .5rem;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
     }
-    &:hover {
-      .img {
-        background: url('/images/mobile/next_hover.png') no-repeat center center!important;
-      }
-    }
+    // &:hover {
+    //   .img {
+    //     background: url('/images/mobile/next_hover.png') no-repeat center center!important;
+    //   }
+    // }
   }
   .prev ,.next{
-    padding: 5px 10px;
-    border: 1px solid #cab597;
-    color: #cab597;
+    padding: 7px 10px;
+    border: 1px solid #999999;
+    color: #999999;
     display: flex;
     align-items: center;
-    font-size: 20px;
-    border-radius: 5px;
+    justify-content: center;
+    font-size: 18px;
+    // border-radius: 5px;
     transition: all .3s;
     cursor: pointer;
+    width: 130px;
+    position: relative;
+    box-sizing: border-box;
     &:hover {
-      background: #cab597;
-      color: #fff;
+      // background: #cab597;
+      // color: #fff;
     }
   }
 }

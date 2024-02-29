@@ -1,22 +1,42 @@
 <template>
     <div class="CatMain NormalTop">
       <transition name="slide">
-        <div key="1" v-if="!waiting" style="display:flex;">
-           <div class="DetailTitle"><img :src="BannerImg" v-show="BannerImg!==null"><div class="TitleBg"><div class="innerBoxText">{{CateName}}</div></div></div>
+        <div key="1" v-if="!waiting">
+           <div class="DetailTitle"><img :src="BannerImg" v-show="BannerImg!==null">
+           <!-- <div class="TitleBg"><div class="innerBoxText">{{CateName}}</div></div> -->
+           </div>
+           <div v-if="catId === 40121">
+            <div class="NomralBg">
+              <div class="cms-list cms-listbox">
+                  <div class="perData" v-for="(v,index) in ListData" :key="index" >
+                    <a :href="v.Url" target="_blank">
+                      <div class="Content">
+                        <img :src="v.Cover" alt="">
+                      </div>
+                      <!-- <p v-html="v.Body" class="Content" ></p> -->
+                    </a>
+                  </div>
+              </div>
+          </div>
+           </div>
+           <div v-else>
+            <div class="NomralBg">
+              <p class="PathData"><router-link to="/" class="HomePath">{{$t('Message.HomeTips')}}</router-link><i class="el-icon-arrow-right"></i><span class="currentTitle">{{CateName}}</span></p>
+              <div class="cms-list">
+                  <div class="perData" v-for="(v,index) in ListData" :key="index" >
+                      <div class="Title"><div class="InnerBg" @click="goClick(index)" :class="'perList'+index"><span>{{v.Title}}</span><i class="Icon IconA"></i></div></div>
+
+                      <p v-html="v.Body" class="Content" :class="'show'+index"></p>
+                  </div>
+              </div>
+          </div>
+           </div>
       </div>
       </transition>
       <transition name="slide">
         <div class="faker" key="2" v-if="waiting" v-loading="true"></div>
       </transition>
-        <div class="NomralBg">
-            <p class="PathData"><router-link to="/" class="HomePath">{{$t('Message.HomeTips')}}</router-link><i class="el-icon-arrow-right"></i><span class="currentTitle">{{CateName}}</span></p>
-            <div class="cms-list">
-                <div class="perData" v-for="(v,index) in ListData" :key="index" >
-                     <div class="Title"><div class="InnerBg" @click="goClick(index)" :class="'perList'+index"><span>{{v.Title}}</span><i class="Icon IconA"></i></div></div>
-                     <p v-html="v.Body" class="Content" :class="'show'+index"></p>
-                </div>
-            </div>
-        </div>
+
     </div>
 </template>
 
@@ -37,6 +57,7 @@ export default class InsCatLayout1 extends Vue {
     private waiting: boolean = true;
     ActiveIndex:number=-1;
     NoImg:string='/images/pc/proddef.jpg';
+    catId:string='';
 
       get cid () {
       return this.$route.params.id;
@@ -67,6 +88,7 @@ export default class InsCatLayout1 extends Vue {
      this.BannerImg = result.ImagePath;
      this.CateName = result.Name;
       this.waiting = false;
+      this.catId = result.Id;
     }).catch((error) => {
       console.log(error, 'error');
       this.$message({
@@ -99,8 +121,8 @@ export default class InsCatLayout1 extends Vue {
 }
 .CatMain {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
 }
 .NomralBg {
   margin-top: 1rem;
@@ -164,12 +186,12 @@ export default class InsCatLayout1 extends Vue {
 .cms-list {
     width: 1200px;
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
     .perData {
         width:100%;
-        display:flex;
-        flex-wrap: wrap;
+        // display:flex;
+        // flex-wrap: wrap;
         margin-bottom: 50px;
         .Title {
           width: 100%;
@@ -237,5 +259,71 @@ export default class InsCatLayout1 extends Vue {
           }
         }
     }
+}
+.cms-listbox{
+  width: 100%;
+  .perData{
+    display: block;
+  }
+  .perData:nth-child(1){
+    .Content{
+      width: 90%;
+      margin-right: auto;
+      img{
+          display: block;
+          width: 100%;
+        }
+      /deep/ p{
+        width: 100%;
+        img{
+          display: block;
+          width: 100%;
+        }
+      }
+      // /deep/ table{
+      //   width: 1200px;
+      //   margin: 0 auto;
+      //   border-collapse: collapse;
+      //   tr{
+      //     position: relative;
+      //     td:nth-child(1){
+      //       width: 100%;
+      //       height: 400px;
+      //       background-color: #edf0f4;
+      //       position: absolute;
+      //       top: 80px;
+      //       left: 0;
+      //     }
+      //     td:nth-child(2){
+      //       width: 800px;
+      //       img{
+      //         width: 100%;
+      //         display: block;
+      //         margin-top: 137px;
+      //         box-shadow: 0 0 12px #b9b9b9;
+      //       }
+      //     }
+      //   }
+      // }
+    }
+  }
+  .perData:nth-child(2){
+    .Content{
+      width: 90%;
+      margin-left: auto;
+      img{
+          display: block;
+          width: 100%;
+        }
+      /deep/ p{
+        width: 100%;
+        // margin-left: auto;
+        img{
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 </style>

@@ -15,7 +15,10 @@
     </div>
     <div class="tab_warpper" v-if="PanelDetail.negotiable">
       <div class="tab_header">
-        <div class="detail_title">{{$t('product.ProductIntroduction')}}</div>
+        <div class="detail_title">
+          <!-- {{$t('product.ProductIntroduction')}} -->
+          <img src="/images/pc/details_11.png" alt="">
+          </div>
       </div>
       <div class="clear"></div>
       <div class="product_detail" v-html="Tabs.Detail" v-show="IsDetail && Tabs.Detail!=''"></div>
@@ -76,7 +79,7 @@ import ProductListSwiper from '@/components/hkTasteBusiness/mobile/product/HkPro
 export default class ProductDetail extends Vue {
   private Slider: YouWouldLike[] = [];
   private Tabs: Tab = new Tab('none');
-  private PanelDetail: PanelDetail = new PanelDetail('', '', '', '', 0, 0, 0, 0, '', '', '', '');
+  private PanelDetail: PanelDetail = new PanelDetail('', '', '', '', '', '', 0, 0, 0, 0, '', '', '', '');
   private Src: string = '';
   private ImgList: string[] = [];
   private ExtAttrList: any[] = [];
@@ -258,7 +261,7 @@ export default class ProductDetail extends Vue {
   background-size: 100% 100%;
   display: inline-block;
   box-sizing: border-box;
-  padding-top: 4rem;
+  padding-top: 1rem;
   .IsDetailshow {
     width: 90%;
     margin: 0 auto;
@@ -267,10 +270,16 @@ export default class ProductDetail extends Vue {
     font-size: 1.4rem;
   }
   .tab_warpper{
-    margin: 1rem 0 0 0;
-    .tab_header{
-      width: 90%;
+
+    width: 90%;
       margin:0 auto;
+      margin-top: 3rem;
+      background-color: #ffffff;
+      box-shadow: 0 0 5px #e9e9e9;
+      padding: 1.5rem;
+      box-sizing: border-box;
+    .tab_header{
+
       .tab_inner {
         width: 100%;
         display: flex;
@@ -305,24 +314,34 @@ export default class ProductDetail extends Vue {
       .detail_title{
           width: 100%;
           margin: 0 auto;
-          background: #b19162;
-          background-size: 100% 100%;
-          text-align: center;
-          font-size: 1.4rem;
+          // background: #b19162;
+          // background-size: 100% 100%;
+          // text-align: center;
+          // font-size: 1.4rem;
           color: #fff;
-          height: 40px;
-          line-height: 40px;
+          // height: 40px;
+          // line-height: 40px;
+          display: flex;
+          justify-content: center;
+          margin-bottom: 2rem;
+          img{
+            width: 80%;
+            display: block;
+          }
       }
       .comment_title{
         border:1px solid #000;
       }
     }
     .product_detail{
-      width: 90%;
+      width: 100%;
       margin:0 auto;
       min-height: 20rem;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
+      // margin-top: 1rem;
+      // margin-bottom: 1rem;
+      background-color: #f8f6f5;
+      padding: 1rem;
+      box-sizing: border-box;
       h3 {
         font-size: 1.4rem;
         line-height: 2rem;
@@ -330,14 +349,16 @@ export default class ProductDetail extends Vue {
         font-weight: 500;
       }
       /deep/ p{
-        font-size: 1.4rem;
-        line-height: 2rem;
+        font-size: 1.2rem;
+        line-height: 1.6rem;
         color: #333333;
+        text-wrap: initial !important;
      }
      /deep/ span{
-        font-size: 1.4rem!important;
-        line-height: 2rem;
+        font-size: 1.2rem;
+        line-height: 1.6rem;
         color: #333333;
+        text-wrap: initial !important;
      }
     }
   }

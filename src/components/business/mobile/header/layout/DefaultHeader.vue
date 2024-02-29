@@ -1,6 +1,6 @@
 <template>
     <div class="header-box">
-      <div class="headerTop">
+      <!-- <div class="headerTop">
           <ins-login />
           <router-link to="/account/GetEnquiry">
                 <i class="handle-icon ptxicon"></i>
@@ -9,13 +9,13 @@
           <shopcart class="shoppingcart"/>
           <CodeSelect class="header-code" />
           <ins-lang-switch class="headerLang" />
-      </div>
+      </div> -->
         <div class="flex-box">
         <ins-logo />
         <!-- <ins-menu /> -->
         <!-- <ins-menu :layout="1" /> -->
-          <img class="slide-menu" src="/images/mobile/Mobile-index_05.png" @click="showSlideMenu" v-show="!this.$store.state.isShowMenu" />
-          <img class="close-meun" src="/images/mobile/out.png" @click="showSlideMenu" v-show="this.$store.state.isShowMenu"  />
+          <img class="slide-menu" src="/images/mobile/Mobile-index_05.png" @click="showSlideMenu" />
+          <!-- <img class="close-meun" src="/images/mobile/out.png" @click="showSlideMenu" v-show="this.$store.state.isShowMenu"  /> -->
         </div>
     </div>
 </template>
@@ -67,19 +67,40 @@ export default class DefaultHeader extends Vue {
 
 <style scoped lang="less">
     .header-box {
-      border-bottom: 1px solid #eee;
+      border-bottom: 2px solid #fff;
       .flex-box {
-        height: 7rem;
+        height: 5rem;
         background-color: @positive_color;
         position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0 1.5rem;
-
+        padding-left: 0;
         .logo {
-          width: 15rem;
-          margin: 0 auto;
+          width: 70%;
+          height: 5rem;
+          display: flex;
+          align-items: center;
+          // margin: 0 auto;
+          background-color: #112a4d;
+          padding-left: 1.5rem;
+          box-sizing: border-box;
+          position: relative;
+          &::after{
+            content: '';
+            width: 0;
+            height: 0;
+            border-bottom: 5rem solid #112a4d;
+            border-right: 4rem solid transparent;
+            position: absolute;
+            right: -3.98rem;
+            bottom: 0;
+          }
+          /deep/ img{
+            width: 20rem;
+            display: block;
+          }
         }
 
         .slide-menu {

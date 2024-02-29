@@ -1,9 +1,9 @@
 <template>
     <div class="NsAdvancedSearch">
-      <div class="TopMeun">
+      <!-- <div class="TopMeun">
           <p class="resetTitle">{{$t('product.Screening')}}<span class="el-icon-close" @click="closeSub"></span></p>
           <p class="resetAll" @click="resetAll">{{$t('Message.ResetOptions')}}</p>
-        </div>
+        </div> -->
         <ul class="attrSearch" v-if="init" style="display:none;">
           <ReSearchItem v-for="(attr, index) in attrList" :key="index" :searchGroup="attr" :defaultSelected="deAttrGIds.indexOf(attr.Id) !== -1 ? selectedAttrs[deAttrGIds.indexOf(attr.Id)].Vals : []"  @changeSelect="changeAttrSelect" />
         </ul>
@@ -271,18 +271,18 @@ export default class NsAdvancedSearch extends Vue {
 </script>
 <style scoped lang="less">
 .NsAdvancedSearch {
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  // border-top-right-radius: 1rem;
+  // border-bottom-right-radius: 1rem;
   overflow: auto;
-  height: 100vh;
+  // height: 100vh;
   .catSearch {
-    margin-top: 1rem;
+    // margin-top: 1rem;
     overflow: hidden;
-    background: #fff;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+    // background: #fff;
+    // border-top-right-radius: 1rem;
+    // border-bottom-right-radius: 1rem;
     .NsSearchItem {
-      width: 90%;
+      width: 100%;
       margin: 0 auto;
     }
   }

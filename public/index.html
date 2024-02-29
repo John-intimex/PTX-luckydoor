@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-  <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-  <title>PTXDemo</title>
-  <meta name="description" content="PTXDemo">
-  <meta name="keywords" content="PTXDemo">
-  <meta property="og:image:secure_url" content="http://ptxdemo.dev.in-store.hk:84images/nlogo.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="PTXDemo" />
-  <meta property="og:url" content="http://ptxdemo.dev.in-store.hk:84">
-  <meta property="og:title" content="PTXDemo" />
-  <meta property="og:description" content="PTXDemo" />
-  <meta property="og:image" content="http://ptxdemo.dev.in-store.hk:84images/nlogo.png" />
-  <meta name="twitter:card" content="PTXDemo">
-  <meta name="twitter:image" content="http://ptxdemo.dev.in-store.hk:84images/nlogo.png">
-  <meta name="twitter:title" content="PTXDemo">
-  <meta name="twitter:description" content="PTXDemo">
-  <script type="application/javascript">
-    function getgeoip(json){
-      console.log(json,'json');
-      localStorage.setItem('IP', json.ip);
-    }
-  </script>
-  <!-- 引入组件库 -->
-  <script type="application/javascript" src="https://api.ip.sb/geoip?callback=getgeoip" rel=prefetch></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <title>luckydoor</title>
+    <meta name="description" content="One of the most competent and well known aluminum case manufacturers with factory in Dongguan, China, Lucky Door Industries Ltd., headquartered in Hong Kong, is a major player in the industry.">
+    <meta name="keywords" content="One of the most competent and well known aluminum case manufacturers with factory in Dongguan, China, Lucky Door Industries Ltd., headquartered in Hong Kong, is a major player in the industry. ">
+    <meta property="og:image:secure_url" content="https://luckydoor.com.hk/images/nlogo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="luckydoor" />
+    <meta property="og:url" content="https://luckydoor.com.hk/">
+    <meta property="og:title" content="luckydoor" />
+    <meta property="og:description" content="One of the most competent and well known aluminum case manufacturers with factory in Dongguan, China, Lucky Door Industries Ltd., headquartered in Hong Kong, is a major player in the industry. " />
+    <meta property="og:image" content="https://luckydoor.com.hk/images/nlogo.png" />
+    <meta name="twitter:card" content="One of the most competent and well known aluminum case manufacturers with factory in Dongguan, China, Lucky Door Industries Ltd., headquartered in Hong Kong, is a major player in the industry. ">
+    <meta name="twitter:image" content="https://luckydoor.com.hk/images/nlogo.png">
+    <meta name="twitter:title" content="luckydoor">
+    <meta name="twitter:description" content="One of the most competent and well known aluminum case manufacturers with factory in Dongguan, China, Lucky Door Industries Ltd., headquartered in Hong Kong, is a major player in the industry. ">
+    <script type="application/javascript">
+        function getgeoip(json) {
+            console.log(json, 'json');
+            localStorage.setItem('IP', json.ip);
+        }
+    </script>
+    <!-- 引入组件库 -->
+    <script type="application/javascript" src="https://api.ip.sb/geoip?callback=getgeoip" rel="prefetch"></script>
 </head>
 
 <body>
-  <noscript>
+    <noscript>
     <strong>We're sorry but vue-ts doesn't work properly without JavaScript
       enabled. Please enable it to continue.</strong>
   </noscript>
-  <div id="app">
-    <div style="color: white;" itemtype=http://ptxdemo.dev.in-store.hk:84>
-    <h1>PTXDemo</h1>
-    <h2>PTXDemo</h2>
+    <div id="app">
+        <div style="color: white;" itemtype="https://ptx-luckydoor.uat2.intimex.hk/">
+            <h1>PTXDemo</h1>
+            <h2>PTXDemo</h2>
+        </div>
     </div>
-  </div>
 
-  <% for (var i in htmlWebpackPlugin.options.JS_CDN) { %>
-    <script src="<%= htmlWebpackPlugin.options.JS_CDN[i] %>"></script>
-  <% } %>
-  <script src="/fbLogin.js" rel=prefetch></script>
+    <% for (var i in htmlWebpackPlugin.options.JS_CDN) { %>
+        <script src="<%= htmlWebpackPlugin.options.JS_CDN[i] %>"></script>
+        <% } %>
+            <script src="/fbLogin.js" rel="prefetch"></script>
 </body>
+
 </html>

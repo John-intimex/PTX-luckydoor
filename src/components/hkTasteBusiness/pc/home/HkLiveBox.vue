@@ -1,6 +1,6 @@
 <template>
-  <div class="indexHotVideo">
-    <div class="TitleBg"><div class="innerBox">{{$t('Cms.WhatNews')}}</div></div>
+  <div class="indexHotVideo fix">
+    <!-- <div class="TitleBg"><div class="innerBox">{{$t('Cms.WhatNews')}}</div></div> -->
     <div class="HotVideoMain">
       <div class="leftVideo">
         <p v-html="videoContent.Body"></p>
@@ -16,12 +16,12 @@ export default class PkLiveBox extends Vue {
   videoContent:string='';
   fbContent:string='';
   getVideoContent () {
-    this.$Api.cms.getContentByDevice({ ContentId: 20294, IsMobile: false }).then(result => {
+    this.$Api.cms.getContentByDevice({ key: 'youtube', IsMobile: false }).then(result => {
       this.videoContent = result.CMS;
     });
   }
   getFbContent () {
-    this.$Api.cms.getContentByDevice({ ContentId: 20299, IsMobile: false }).then(result => {
+    this.$Api.cms.getContentByDevice({ key: 'facebook', IsMobile: false }).then(result => {
       this.fbContent = result.CMS;
     });
   }
@@ -37,17 +37,18 @@ export default class PkLiveBox extends Vue {
 <style  lang="less">
 .HotVideoMain .leftVideo iframe{
   width: 100%;
-  height: 500px;
+  height: 460px;
 }
 .HotVideoMain .leftVideo img{
   width: 100%;
 }
 .HotVideoMain .rightVideo iframe{
   width: 100%;
-  height: 500px;
+  height: 460px;
 }
 .HotVideoMain .rightVideo img{
   width: 100%;
+  display: block;
 }
 </style>
 <style scoped lang="less">
@@ -73,11 +74,10 @@ export default class PkLiveBox extends Vue {
 }
 .indexHotVideo{
     width: 100%;
-    background-size: 100% 100%;
-    display: inline-block;
-    padding-top: 90px;
-    padding-bottom: 90px;
-    background: url('/images/pc/pcindex_04.jpg') no-repeat center center;
+    display: block;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background: url('/images/pc/pcindex_66.png') no-repeat center center;
     background-size: cover;
 }
 .HotVideoMain{
@@ -85,23 +85,24 @@ export default class PkLiveBox extends Vue {
     margin: 0 auto;
 }
 .HotVideoMain .leftVideo{
-    width: 55%;
+    width: 760px;
     float: left;
-    margin-right: 5%;
+    // margin-right: 5%;
     background-size: 100% 100%;
     box-sizing: border-box;
-    padding: 30px;
+    // padding: 30px;
 }
 .HotVideoMain .leftVideo img{
     width: 100%;
     margin: 0 auto;
+    display: block;
 }
 .HotVideoMain .rightVideo{
-    width: 40%;
-    float: left;
+    width: 360px;
+    float: right;
     background-size: 100% 100%;
     box-sizing: border-box;
-    padding: 30px;
+    // padding: 30px;
 }
 .HotVideoMain .rightVideo img{
     width: 100%;

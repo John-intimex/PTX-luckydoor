@@ -1,28 +1,36 @@
 <template>
   <div class="siderbarContainer">
+    <div class="bar" @click="showbar"></div>
     <div id="sidebar" v-show="isShow">
-      <a href="javascript:void(0);" @click="toTop"
-        ><img src="/static/Image/mobile/home/down.png"
-      /></a>
-      <a href="javascript:void(0);" @click="show = !show"
+
+      <!-- <a href="javascript:void(0);" @click="show = !show"
         ><img src="/static/Image/mobile/home/down2.png"
-      /></a>
-      <span v-show="show">
+      /></a> -->
+      <span>
         <a
-          href="https://api.whatsapp.com/send?phone=8529876%205436&text=%E6%88%91%E6%83%B3%E6%9F%A5%E8%AF%A2%E4%B8%80%E4%B8%8B"
+          href="https://api.whatsapp.com/send?phone=85290826444&text=%E6%88%91%E6%83%B3%E6%9F%A5%E8%AF%A2%E4%B8%80%E4%B8%8B"
           target="_blank"
           ><img src="/static/Image/mobile/home/whatsapp.png"
         /></a>
         <!-- <a href="javascript:;" class="livechat" @click="showLivechat"
           ><img src="/static/Image/mobile/home/facebook.png"
         /></a> -->
-        <a href="tel:85298765436" class="fb-button" target="_blank"
+        <a href="javascript:;" class="livechat" @click="showLivechat"
+          ><img src="/static/Image/mobile/home/WeChat.png"
+        /></a>
+        <a href="tel:85224927789" class="fb-button" target="_blank"
           ><img src="/static/Image/mobile/home/phone.png"
         /></a>
-        <a href="mailto:info@hktaste.com.hk" class="fb-button"
+        <a href="mailto:sales@luckydoor.com.hk" class="fb-button"
           ><img src="/static/Image/mobile/home/news.png"
         /></a>
       </span>
+      <a href="javascript:void(0);" class="toTop" @click="toTop"
+        ><img src="/static/Image/mobile/home/down.png"
+      /></a>
+    </div>
+    <div class="showWeChat">
+      <img src="/static/Image/mobile/home/WeChatcode.jpg"/>
     </div>
     <!-- 显示livechat -->
     <div id="fb-root"></div>
@@ -71,10 +79,15 @@ export default class InsSidebar extends Vue {
   showFBMessenger: boolean = false;
   show: boolean = false;
   showLivechat() {
-    $('.fb-livechat').fadeToggle();
+    // $('.fb-livechat').fadeToggle();
+    $('.showWeChat').fadeToggle();
+  }
+  showbar() {
+    // $('#sidebar').animate({ 'right': '0' });
+    $('#sidebar').fadeToggle();
   }
   toTop() {
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    // document.body.scrollTop = document.documentElement.scrollTop = 0;
     // window.addEventListener('scroll', () => {
     //   let scrollY = document.documentElement.scrollTop || document.body.scrollTop;
     //   let width = (document.documentElement.offsetWidth - 1100) / 2;
@@ -93,13 +106,25 @@ export default class InsSidebar extends Vue {
     //     this.isShow = false;
     //   }
     // });
+    let top = document.documentElement.scrollTop;
+
+    const timeTop = setInterval(() => {
+      document.documentElement.scrollTop = top -= 50;
+
+      if (top <= 0) {
+        clearInterval(timeTop);
+      }
+    }, 10);
   }
 
   mounted() {
     // this.showSidebar();
     $('.fb-close').on('click', function() {
       $('.fb-livechat').fadeOut();
+      $('.showWeChat').fadeOut();
+      $('#sidebar').fadeOut();
     });
+    // $('#sidebar').animate({ 'right': '-3.5rem' });
     const s = document.createElement('script');
     s.type = 'text/javascript';
     s.setAttribute('rel', 'preload');
@@ -132,6 +157,7 @@ export default class InsSidebar extends Vue {
 <style scoped lang="less">
 .siderbarContainer {
   position: relative;
+
 }
 .fb-livechat {
   display: none;
@@ -141,6 +167,19 @@ export default class InsSidebar extends Vue {
   width: 4rem;
   z-index: 1000000;
   line-height: 0;
+}
+.showWeChat{
+  display: none;
+  position: fixed;
+  right: 70px !important;
+  bottom: 110px;
+  width: 350px;
+  z-index: 1000000;
+  line-height: 0;
+  img{
+    width: 100%;
+    display: block;
+  }
 }
 .fb-widget {
   background: #fff;
@@ -159,13 +198,7 @@ export default class InsSidebar extends Vue {
   -moz-box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
   -o-box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
 }
-@media screen and (max-width: 768px) {
-  .fb-widget {
-    width: 300px;
-    height: 500px;
-    right: 5rem;
-  }
-}
+
 .fb-credit {
   text-align: center;
   margin-top: 8px;
@@ -215,14 +248,28 @@ export default class InsSidebar extends Vue {
 }
 #sidebar {
   img {
-    width: 4rem;
+    width: 60px;
+    display: block;
   }
   position: fixed;
-  right: 28px!important;
+  right: 0;
   bottom: 100px;
   width: 60px;
   z-index: 997;
   line-height: 0;
+  text-align: center;
+  a{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  .toTop{
+    img{
+      width: 48px;
+      display: block;
+    }
+
+  }
 }
 
 .slide-fade-enter-active,
@@ -241,5 +288,51 @@ export default class InsSidebar extends Vue {
 }
 a {
   line-height: 0;
+}
+@media screen and (max-width: 768px) {
+  .bar{
+    width: 19px;
+    height: 50px;
+    position: fixed;
+    right: 0;
+    bottom: 2rem;
+    background: url(/static/Image/mobile/home/mini_bg.png) no-repeat;
+    display: block;
+    transform: translateY(-50%);
+  }
+  #sidebar{
+    right: 0;
+    width: 3.5rem;
+    display: block;
+    img{
+      width: 3.5rem;
+    }
+    .toTop{
+      img{
+        width: 3rem;
+      }
+    }
+    a{
+      margin-bottom: 2px;
+    }
+  }
+  .fb-widget {
+    width: 300px;
+    height: 500px;
+    right: 5rem;
+  }
+  .showWeChat{
+    display: none;
+    position: fixed;
+    right: 4rem !important;
+    bottom: 6rem;
+    width: 25rem;
+    z-index: 1000000;
+    line-height: 0;
+    img{
+      width: 100%;
+      display: block;
+    }
+  }
 }
 </style>

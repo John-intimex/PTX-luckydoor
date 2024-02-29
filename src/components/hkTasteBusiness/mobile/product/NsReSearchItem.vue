@@ -7,10 +7,10 @@
         </p>
         <transition name="fade">
         <ul :class="{'open': isOpen}" >
-            <li class="viewall" :class="{'borderLine':isAll}">
+            <!-- <li class="viewall" :class="{'borderLine':isAll}">
                 <input type="checkbox" :id="searchGroup.Name+'-All'" v-model="isAll" @click="checkAll($event,searchGroup)" style="display:none;">
                 <label :for="searchGroup.Name+'-All'" >{{$t('Message.All')}}</label>
-            </li>
+            </li> -->
             <li v-for="(child, index2) in (searchType === 1 ? searchGroup.AttrValues : searchType === 2 ? searchGroup.Children : [])" :key="index2">
                 <input style="display:none;" type="checkbox" :id="child.Name+index2" :value="child.Id" v-model="checkedValue" @click="selectAttr(searchGroup)">
                 <label :for="child.Name+index2"  @click="checkLi(index2)">{{child.Name}}</label>
@@ -124,7 +124,7 @@ export default class NsNsReSearchItem extends Vue {
       }
       p.category {
         width: 100%;
-        font-size: 22px;
+        font-size: 1.4rem;
         color: #333333;
         background-color: #FFF;
         display: -webkit-box;
@@ -140,18 +140,20 @@ export default class NsNsReSearchItem extends Vue {
         height: 3.5rem;
         line-height: 3.5rem;
         border-radius: 2rem;
-        padding-top: 1rem;
+        // padding-top: 1rem;
         i{
           position: absolute;
           right: 0px;
-          top: 20px;
+          top: 50%;
+          transform: translateY(-50%);
           font-size: 1.6rem;
         }
     }
 
      >ul {
        transition: all 3s;
-       margin-bottom: 10rem;
+       margin-bottom: 1rem;
+       display: none;
         >li {
             height: 3.5rem;
             display: flex;
@@ -183,7 +185,7 @@ export default class NsNsReSearchItem extends Vue {
             }
 
             label {
-            font-size: 20px;
+            font-size: 1.4rem;
             color: #666666;
             width: 90%;
             margin: 0 auto;
@@ -198,7 +200,7 @@ export default class NsNsReSearchItem extends Vue {
         }
 
         &.open {
-                display: none;
+                display: block;
                 transition: all 3s;
         }
     }

@@ -1,7 +1,7 @@
 <template>
  <div id="footer">
     <div class="footer-box">
-          <p><img src="/images/mobile/logo_white.png"></p>
+          <p><img src="/images/mobile/pcindex_09.png"></p>
           <!-- <div class="contactBox">
               <div class="w50">
                   <p>whatsapp&nbsp;{{$t('home.Order')}}</p>
@@ -12,10 +12,12 @@
                   <p>6289 1789</p>
               </div>
           </div> -->
-          <div class="footerNav">
+          <div class="footerNav fix">
                   <ul>
                       <li v-for="(item,index) in footerMenus" :key="index" class="indexMeun">
-                          <a href="javascript:;">{{item.Name}}<i class="downIcon" @click="showMeun(item,index)"></i></a>
+                          <a href="javascript:;">{{item.Name}}
+                            <!-- <i class="downIcon" @click="showMeun(item,index)"></i> -->
+                            </a>
                           <ul v-if="item.Childs && item.Childs.length"  class="submeunMain" :class="'sub'+index">
                               <li v-for="(child,index2) in item.Childs" :key="index2">
                                   <router-link :to="To(child)">{{child.Name}}</router-link>
@@ -27,7 +29,7 @@
                       </li>
                   </ul>
               </div>
-          <div class="footerAccept" v-if="!isPtx">
+          <!-- <div class="footerAccept" v-if="!isPtx">
             <p>{{$t('home.Weaccept')}}</p>
             <div>
               <img src="/images/payment/stripe.png" />
@@ -38,15 +40,26 @@
               <img src="/images/payment/MasterCard.png" />
               <img src="/images/payment/VISA.png" />
             </div>
-          </div>
-          <div class="footerCpy">
-            <p>Copyright © {{currentYear}} NStore<br>powered by Eventizer
-            <a href="https://eventizer.hk/" target="_blank">
+          </div> -->
+
+    </div>
+    <div class="footerCpy">
+      <div class="footerCpynav">
+        <div class="left">
+          <a href="/CMS/content/20331">Disclaimer</a> | <a href="/CMS/content/20332">Privacy Policy</a>
+        </div>
+        <div class="right">
+<a href="https://eventizer.hk/" target="_blank">
               <img src="/images/mobile/footerlogo.png">
+              <img src="/images/pc/NStore.png">
             </a>
+        </div>
+
+        </div>
+            <p>Copyright © {{currentYear}} Lucky Door Industries Limited Powered by Eventizer Limited
+
             </p>
           </div>
-    </div>
 </div>
 </template>
 
@@ -106,31 +119,16 @@ export default class InsFooter extends Vue {
 }
 #footer{
   width: 100%;
-  // background: url('/images/mobile/MobileIndex_04.jpg') no-repeat center center;
-  // background-size: cover;
-  display: inline-block;
-  background-color: #4d4d4d;
+  background: url('/images/mobile/indexM_12.png') no-repeat center center;
+  background-size: cover;
+  display: block;
+  // background-color: #4d4d4d;
   .footer-box{
     width: 90%;
     margin: 0 auto;
-    padding-top: 3rem;
+    padding-top: 4rem;
     padding-bottom: 1rem;
-    .footerCpy{
-      width: 100%;
-      display: inline-block;
-      margin-top: 2rem;
-      >p{
-        color:#FFF;
-        font-size: 1.2rem;
-        text-align: center;
-        img{
-          height: 2rem;
-          display: inline-block;
-          margin-left: 1rem;
-          vertical-align: middle;
-        }
-      }
-    }
+
     .footerAccept{
       width: 100%;
       >p{
@@ -149,16 +147,18 @@ export default class InsFooter extends Vue {
       }
     }
     .footerNav{
-      width: 80%;
+      width: 90%;
       margin: 0 auto;
       margin-top: 2rem;
       margin-bottom: 2rem;
+
       >ul>li{
-        width: 100%;
-        display: inline-block;
-        line-height: 4rem;
+        width: 50%;
+        display: block;
+        float: left;
+        // line-height: 4rem;
         text-align: center;
-        margin-bottom: 1rem;
+        // margin-bottom: 1rem;
         position: relative;
         >ul{
           position: relative;
@@ -173,22 +173,23 @@ export default class InsFooter extends Vue {
         text-align: center;
         margin-bottom: .5rem;
           >a{
-            font-size: 1.6rem;
+            font-size: 1.2rem;
             color:#fff;
             font-weight: 500;
             text-decoration: none;
           }
         }
         >a{
-          font-size: 1.8rem;
-          color:#333333;
+          font-size: 1.4rem;
+          color:#fff;
           font-weight: 500;
           text-decoration: none;
           position: relative;
           display: block;
-          background: #ffffff;
-          border-radius: 5px;
-          margin-bottom: .5rem;
+          padding: 1rem 0;
+          // background: #ffffff;
+          // border-radius: 5px;
+          // margin-bottom: .5rem;
           i{
                background: url('/Images/mobile/downicon.png') no-repeat center center;
                background-size: contain;
@@ -223,12 +224,54 @@ export default class InsFooter extends Vue {
       }
     }
     >p{
-      width:70%;
+      width:90%;
       margin: 0 auto;
       img{
         width: 100%;
       }
     }
   }
+  .footerCpy{
+      width: 100%;
+      display: block;
+      // margin-top: 2rem;
+      background-color: #ffffff;
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      >p{
+        color:#112a4d;
+        font-size: 1rem;
+        text-align: left;
+        img{
+          height: 2rem;
+          display: inline-block;
+          margin-left: 1rem;
+          vertical-align: middle;
+        }
+      }
+      .footerCpynav{
+        color:#112a4d;
+        font-size: 1rem;
+        // text-align: center;
+        display: flex;
+        justify-content: space-between;
+        .left{
+          padding-top: 0.5rem;
+        }
+        .right{
+          img{
+          height: 2.5rem;
+          display: inline-block;
+          margin-left: 1rem;
+          vertical-align: middle;
+        }
+        }
+        a{
+          color:#112a4d;
+        font-size: 1rem;
+        // text-align: center;
+        }
+      }
+    }
 }
 </style>

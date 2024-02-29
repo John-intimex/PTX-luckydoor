@@ -48,7 +48,7 @@
     </div>
     <!-- 议价模式 -->
       <div class="in_panel_footer" v-if="panelDetail.negotiable == true && panelDetail.negotiateMinQty==panelDetail.MinPurQty">
-        <p class="productTips">{{$t('Message.AskFor')}}</p>
+        <!-- <p class="productTips">{{$t('Message.AskFor')}}</p> -->
         <button type="button" @click="AddProdToMyEnquiry()" class="CartBtn">{{$t('Enquiry.AddToEnquiry')}}</button>
     </div>
     <!-- <inRecommend :Skus="ProductSku"></inRecommend> -->
@@ -414,20 +414,33 @@ export default class Panel extends Vue {
 }
     .in_panel_footer {
       .CartBtn{
-        height: 50px;
+        height: 54px;
         font-size: 20px;
         display: inline-flex;
         justify-content: center;
         align-items: center;
         color: #fff;
-        border-radius: 3px;
+        // border-radius: 3px;
         transition: .1s;
-        text-transform: uppercase;
+        // text-transform: uppercase;
         background-color: unset;
-        background: #000;
+        background: #f5ad2a;
         background-size: cover;
         width: 100%;
         border: 0px;
+        font-weight: bold;
+        position: relative;
+        &::before{
+          content: '';
+          width: 37px;
+          height: 37px;
+          background: url('/images/pc/details_07.png') no-repeat center center;
+          display: block;
+          margin-right: 18px;
+          // position: absolute;
+          // top: 50%;
+          // left: ;
+        }
         &:disabled{
           cursor:not-allowed;
           background: #ccc;

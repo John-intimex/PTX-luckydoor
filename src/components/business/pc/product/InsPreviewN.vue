@@ -209,16 +209,19 @@ SwiperOption: object = {
 .PcVersionPreview .swiper-button-prev{
   background-image:url('/images/pc/pleft.png')!important;
   left:0px!important;
+  top: 21px;
 }
 .PcVersionPreview .swiper-button-next{
     background-image:url('/images/pc/pright.png')!important;
     right:0px!important;
+    top: 21px;
 }
 .PcVersionPreview  .swiper-button-prev, .PcVersionPreview  .swiper-button-next{
-    width: 40px!important;
-    height: 40px!important;
+    width: 30px!important;
+    height: 104px!important;
     background-size:100%!important;
     outline: 0;
+    background-color: #5f7eaa;
 }
 .PcVersionPreview{
   .swiper-father{
@@ -247,11 +250,13 @@ SwiperOption: object = {
     // border: 1px solid;
     margin: 20px 0;
     line-height: 0;
+    border: 1px solid #999999;
 }
 .in_preview_img_warpper > img {
   width: 100%;
   cursor: pointer;
   // height: 333px;
+  display: block;
 }
 .in_preview_img_mirror {
   position: absolute;
@@ -287,9 +292,9 @@ SwiperOption: object = {
   box-sizing: border-box;
   display: flex;
   flex-wrap: nowrap;
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
-  padding: 10px;
+  // padding: 10px;
   user-select: none;
 }
 .in_slider_page_item{
@@ -298,8 +303,9 @@ SwiperOption: object = {
   font-size: 0;
   border-radius: 2px;
   padding: 5px;
+  padding-top: 0;
   .item{
-    border: solid 1px#f0f0f0;
+    border: solid 1px#999999;
     padding: 0;
     &:hover{
       border:1px solid @base_color;
@@ -309,6 +315,8 @@ SwiperOption: object = {
 .in_slider_page_item img {
   cursor: pointer;
   width: 100%;
+  height: 100px;
+  object-fit: cover;
 }
 // .swiper-slide{
 //   width: 100% !important;

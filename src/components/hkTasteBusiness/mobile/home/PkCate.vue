@@ -1,17 +1,35 @@
 <template>
   <div class="category_box">
     <div class="cateContainer">
-        <div class="category_box_left">
+      <div class="TitleBg">
+        <img src="/images/pc/pcindex_39.png" alt="">
+      </div>
+        <!-- <div class="category_box_left">
           <h2>{{$t('home.Category')}}</h2>
           <ul v-for="(a,index) in attrCategory" :key="index">
             <li @click="getSelectedAttrs(a)">{{a.Name}}</li>
-            <!-- <li v-for="(g,index) in a" :key="index"><a :href="'/product/search?key=+&grapeId='+g.Id">{{g.Name}}</a></li> -->
+            <li v-for="(g,index) in a" :key="index"><a :href="'/product/search?key=+&grapeId='+g.Id">{{g.Name}}</a></li>
           </ul>
-        </div>
+        </div> -->
     </div>
     <ul class="category_box_right">
       <li v-for="(b,index) in productCate" :key="index">
-        <router-link :to="'/product/search/-?' + 'catalogs=' + JSON.stringify([b.Id]) + '&type=0'">{{b.Name}}</router-link>
+        <router-link
+          :to="'/product/search/-?' + 'catalogs=' + JSON.stringify([b.Id]) + '&type=0'"
+        >
+        <img :src="b.Img" alt="">
+        <p>
+          {{b.Name}}
+        </p>
+        </router-link>
+      </li>
+      <li>
+        <router-link to='/product/search/-'>
+        <img src="/images/pc/index_17.jpg" alt="">
+        <p>
+          Search
+        </p>
+        </router-link>
       </li>
     </ul>
       <div class="clear"></div>
@@ -58,15 +76,28 @@ ul,li{
 .clear{
     clear: both;
 }
+.category_box{
+  margin-bottom: 4rem;
+}
 .cateContainer{
     width: 100%;
-    min-height: 45rem;
-    float: left;
-    padding-top: 4.2rem;
+    // min-height: 45rem;
+    // float: left;
+    padding-top: 3rem;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    background: url(/static/Image/home/categroy.jpg) 0 0 no-repeat;
+    // background: url(/static/Image/home/categroy.jpg) 0 0 no-repeat;
     background-size: cover;
+    .TitleBg{
+      margin-bottom: 2rem;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      img{
+        width: 80%;
+        display: block;
+      }
+    }
 }
 .category_box_left {
   width: 85%;
@@ -99,33 +130,60 @@ ul,li{
   font-family: "PingFang";
 }
 .category_box_right {
-  width: 100%;
-  float: left;
+  width: 90%;
+  margin: 0 auto;
+  // float: right;
 }
 .category_box_right li {
-  width: 49.8%;
+  width: 50%;
   height: 15rem;
+  margin-right: 0;
+  margin-bottom: 0;
   float: left;
-  border-bottom: 1px solid #b2b5b5;
-}
-.category_box_right li:nth-child(2n) {
-    border-left: 1px solid #b2b5b5;
-}
-.category_box_right li {
-  background: url('/static/Image/home/cate.jpg') 0 0 no-repeat;
-  background-size: cover;
-}
-.category_box_right li a {
-    font-size: 1.6rem;
-    color: #fff;
+  box-sizing: border-box;
+  a {
     display: block;
-    margin-top: 3rem;
-    margin-left: 10px;
-    font-family: "FuturaNext", "Microsoft yahei";
-    font-weight: 600;
-    word-break: break-all;
-    width: 59%;
-    text-orientation: none;
-    text-decoration: none;
+    border: 1px solid #697689;
+    position: relative;
+    transition: all 0.3s;
+    img{
+      width: 100%;
+      height: 15rem;
+      display: block;
+      object-fit: cover;
+      object-position: 50% 50%;
+    }
+    p{
+      width: 100%;
+      height: 4rem;
+      background-color: #112a4d;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      font-weight: bold;
+      // letter-spacing: 3px;
+      transition: height 0.3s;
+      padding: 0 1.5rem;
+      box-sizing: border-box;
+    }
+  }
+  // &:hover{
+  //   a{
+  //     p{
+  //       height: 100%;
+  //       background-color: rgba(28, 56, 96, 0.8);
+  //       font-size: 36px;
+  //       text-transform: height 0.3s;
+  //     }
+  //   }
+  // }
 }
+
 </style>

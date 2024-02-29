@@ -57,7 +57,7 @@ export function getQueryString (name) {
  */
  export function pay (payment, orderId, type: number = 0) {
   let payStr = type ? '/trans/rnp/' : '/trans/pay/';
-
+  console.log(payment, orderId);
   switch (env) {
     case 'dev':
       window.location.href = 'http://192.168.1.4:8080/pg' + payStr + AppId + '/' + payment + '/' + orderId; // dev

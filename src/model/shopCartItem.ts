@@ -132,7 +132,7 @@ export default class ShopCartItem {
       _GrossWeight = 0,
       _DiscountVal = 0,
       _Id = '',
-      _Product = new PanelDetail('', '', '', '', 0, 0, 0, 0, '', '', '', ''),
+      _Product = new PanelDetail('', '', '', '', '', '', 0, 0, 0, 0, '', '', '', ''),
       _PromotionRule = '',
       _Qty = 0) {
       this._Attr1 = _Attr1;

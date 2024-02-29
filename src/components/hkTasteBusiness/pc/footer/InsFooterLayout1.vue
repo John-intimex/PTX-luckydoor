@@ -2,36 +2,47 @@
 <div id="footer">
   <div class="footbg">
     <div class="footerMain">
-        <!-- <div class="footerTop">
-            <p><span>whatsapp&nbsp;{{$t('home.Order')}}</span><b>6289 1789</b></p>
-            <p><span>{{$t('home.TelSearch')}}</span><b>6289 1789</b></p>
-        </div> -->
+        <div class="footerTop">
+            <!-- <p><span>whatsapp&nbsp;{{$t('home.Order')}}</span><b>6289 1789</b></p>
+            <p><span>{{$t('home.TelSearch')}}</span><b>6289 1789</b></p> -->
+            <a href="/"><img src="/images/pc/pcindex_09.png" alt=""></a>
+        </div>
         <div class="footerBotttom">
           <div class="footerLeft">
               <ul v-for="(n,index) in footerMenus" :key="index">
                 <li>
-                  <router-link
-                    :to="n.Type === 0 ? n.Url : n.Type === 1 ? '/cms/catDetail/' + n.Value.Id : n.Type === 2 ? '/CMS/content/' + n.Value.Id : n.Type === 3 ? '/RegNPay/Form/' + n.Value.Id : n.Type === 4 ? '/product/CatProduct?catId=' + n.Value.Id : n.Type === 5 ? '/product/list?key=&attr=' + n.Value.Id : '/product/list?key=&attr=' + n.ParentId + '&attrId=' + n.Value.Id"
-                  ></router-link>
+                    <a href="javascript:;" v-if="n.Type === 0" @click="toUrl(n)"><span>{{n.Name}}</span></a>
+                    <router-link :to="To(n)"  v-else><span>{{n.Name}}</span></router-link>
                   <ul>
                     <li v-for="(c,index2) in n.Childs" :key="index2">
-                       <router-link :to="To(c)">{{c.Name}}</router-link>
+                       <a href="javascript:;" v-if="c.Type === 0" @click="toUrl(c)">
+                              {{c.Name}}
+                        </a>
+                       <router-link :to="To(c)" v-else>{{c.Name}}</router-link>
                     </li>
                   </ul>
                 </li>
              </ul>
           </div>
-          <div class="footerRight">
+          <!-- <div class="footerRight">
             <p><img src="/images/pc/pcindex_14.png" /></p>
-          </div>
+          </div> -->
           <div class="clear"></div>
-           <p class="footercopy">
-             <span>Copyright © {{currentYear}} NStore powered by Eventizer
+
+        </div>
+
+    </div>
+  </div>
+  <div class="footercopy">
+            <div class="footernav">
+              <a href="/CMS/content/20331">Disclaimer</a> | <a href="/CMS/content/20332">Privacy Policy</a>
+            </div>
+             <span>Copyright © {{currentYear}} Lucky Door Industries Limited Powered by Eventizer Limited
                <a href="https://eventizer.hk/" target="_blank">
-               <img src="/images/pc/footerlogo.png">
+               <img src="/images/pc/footerlogo.png"> <img src="/images/pc/NStore.png">
                </a>
               </span>
-             <span v-if="!isPtx">
+             <!-- <span v-if="!isPtx">
                 <p>{{$t('home.Weaccept')}}</p>
                 <div>
                   <img src="/images/payment/stripe.png" />
@@ -42,11 +53,8 @@
                   <img src="/images/payment/MasterCard.png" />
                   <img src="/images/payment/VISA.png" />
                 </div>
-              </span>
-            </p>
+              </span> -->
         </div>
-    </div>
-  </div>
 </div>
 
 </template>
@@ -77,6 +85,13 @@ export default class InsFooterLayout1 extends Vue {
       }
     }, 1);
   }
+  toUrl (n) {
+    if (!n.IsNewWin && n.Url) {
+      window.location.href = n.Url;
+    } else if (n.IsNewWin && n.Url) {
+      window.open(n.Url);
+    }
+  }
   To (n) {
     return n.Type === 1 ? '/cms/catDetail/' + n.Value.Id : n.Type === 2 ? '/CMS/content/' + n.Value.Id : n.Type === 3 ? '/RegNPay/Form/' + n.Value.Id : n.Type === 4 && !this.$store.state.catMenuType ? '/product/cat/' + n.Value.Id : n.Type === 4 && this.$store.state.catMenuType ? '/product/search/-?catalogs=' + JSON.stringify([parseInt(n.Value.Id)]) + '&type=0' : n.Type === 5 ? '/product/search/-?attrs=' + JSON.stringify([{ Id: parseInt(n.Value.Id), Vals: [] }]) + '&type=0' : '/product/search/-?attrs=' + JSON.stringify([{ Id: parseInt(n.ParentId), Vals: [parseInt(n.Value.Id)] }]) + '&type=0';
   }
@@ -96,22 +111,23 @@ export default class InsFooterLayout1 extends Vue {
 <style scoped lang="less">
 /* 底部文件 */
 .footbg{
-    // background: #9f2f34 url('/images/pc/pcindex_05.jpg') no-repeat center bottom;
-    // background-size: cover;
+    background: url('/images/pc/pcindex_82.png') no-repeat center bottom;
+    background-size: cover;
     width: 100%;
-    display: inline-block;
-    padding-bottom: 10px;
+    display: block;
+    padding-top: 60px;
+    padding-bottom: 76px;
     // min-height: 278px;
-    background-color: #4d4d4d;
+    // background-color: #4d4d4d;
 }
 .footerMain{
     width: 1200px;
-    margin: 30px auto 0;
+    margin: 0 auto;
 }
 .footerTop{
     text-align: center;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 0;
+    padding-bottom: 42px;
     width: 100%;
 }
 .footerTop p{
@@ -135,19 +151,21 @@ export default class InsFooterLayout1 extends Vue {
     width: 100%;
 }
 .footerLeft{
-    float: left;
-    width: 40%;
+    // float: left;
+    // width: 40%;
+    display: flex;
+    justify-content: space-between;
 }
 .footerLeft > ul{
-    float: left;
-    margin-right: 10%;
+    // float: left;
+    // margin-right: 10%;
 }
 .footerLeft > ul >li{
     width: 100%;
     line-height: 30px;
 }
 .footerLeft > ul >li >a{
-    font-size:20px;
+    font-size:18px;
     color:#FFF;
 }
 .footerLeft > ul >li >ul{
@@ -156,8 +174,8 @@ export default class InsFooterLayout1 extends Vue {
 .footerLeft > ul >li >ul a{
     font-size: 16px;
     color:#FFF;
-    display: inline-block;
-    text-transform: uppercase;
+    display: block;
+    // text-transform: uppercase;
 }
 .footerLeft > ul >li >ul a:hover{
    transform: translateY(-3px);
@@ -185,38 +203,39 @@ export default class InsFooterLayout1 extends Vue {
 }
 .footercopy{
   width: 100%;
-  display: inline-block;
-  margin-top: 20px;
+  display:flex;
+  justify-content: center;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  align-items: center;
+  .footernav{
+    font-size: 14px;
+    color:#1c3860;
+    margin-right: 10px;
+    a{
+      color:#1c3860;
+      font-size: 14px;
+      padding: 0 7px;
+    }
+  }
+
 }
-.footercopy span:nth-child(1){
-  float: left;
-  color:#FFF;
+.footercopy span{
+  // float: left;
+  color:#1c3860;
   font-size: 14px;
+  display: flex;
+  align-items: center;
 }
-.footercopy span:nth-child(1) img{
-  display: inline-block;
+.footercopy span a{
+  display: flex;
+  align-items: center;
+}
+.footercopy span a img{
+  display: block;
   vertical-align:middle;
   padding-left: 10px;
   height: 35px;
 }
-.footercopy span:nth-child(2){
-  float: right;
-  width: 40%;
-  // text-align: center;
-  color:#FFF;
-  font-size: 14px;
-  display: flex;
 
-  >p{
-    flex-shrink: 0;
-    margin-top: 10px;
-    margin-right: 10px;
-  }
-}
-.footercopy span:nth-child(2) img{
-  display: inline-block;
-  vertical-align:middle;
-  margin: 5px;
-  height: 32px;
-}
 </style>

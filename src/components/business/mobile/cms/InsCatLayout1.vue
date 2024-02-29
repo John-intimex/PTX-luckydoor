@@ -1,34 +1,64 @@
 <template>
     <div class="CatMain NoramlPaddingTop">
       <transition name="slide">
-        <div key="1" v-if="!waiting" style="display:flex;">
-           <div class="DetailTitle"><img :src="BannerImg" v-show="BannerImg!==null"><div class="TitleBg"><div class="innerBoxText">{{CateName}}</div></div></div>
+        <div key="1" v-if="!waiting" >
+           <div class="DetailTitle">
+            <img :src="BannerImg" v-show="BannerImg!==null">
+            <!-- <div class="TitleBg"><div class="innerBoxText">{{CateName}}</div></div> -->
+            </div>
+            <div class="NomralBg">
+            <!-- <p class="PathData"><router-link to="/" class="HomePath">{{$t('Message.HomeTips')}}</router-link><i class="el-icon-arrow-right"></i><span class="currentTitle">{{CateName}}</span></p> -->
+              <div class="cms_style1" v-if="catId === 40119">
+                <div class="cms-list">
+                  <div class="perData" v-for="(v,index) in ListData" :key="index">
+                      <div class="left">
+                        <p class="title">{{v.Title}}</p>
+                          <!-- <p class="contentTime">{{v.ContentDateTime}}</p> -->
+                          <p class="desc">{{v.Desc}}</p>
+                          <p class="body" v-html="v.Body"></p>
+                          <p class="bodyp">……</p>
+                          <div class="HomeViewMore">
+                              <router-link :to="'/cms/contentN/'+v.Id">Read More</router-link>
+                          </div>
+                      </div>
+                      <div class="right">
+                          <!-- <p class="imgs" @click="GoLink(v)"><img :src="v.Cover.indexOf('.png')!==-1 || v.Cover.indexOf('.jpg')!==-1 || v.Cover.indexOf('.jpeg')!==-1 || v.Cover.indexOf('.gif')!==-1?v.Cover:NoImg"></p> -->
+                          <iframe width="540" height="360" :src="v.Url" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                      </div>
+                  </div>
+                  <div class="pager" v-if="totalRecord > pageSize">
+                      <ins-page :total="totalRecord" v-model="currentPage" :pageNum="pageSize"></ins-page>
+                  </div>
+              </div>
+              </div>
+              <div class="cms" v-else>
+                <div class="cms-list">
+                    <div class="perData" v-for="(v,index) in ListData" :key="index">
+                        <div class="left">
+                            <p class="imgs" @click="GoLink(v)"><img :src="v.Cover.indexOf('.png')!==-1 || v.Cover.indexOf('.jpg')!==-1 || v.Cover.indexOf('.jpeg')!==-1 || v.Cover.indexOf('.gif')!==-1?v.Cover:NoImg"></p>
+                        </div>
+                        <div class="right">
+                            <p class="title">{{v.Title}}</p>
+                            <!-- <p class="contentTime">{{v.ContentDateTime}}</p> -->
+                            <p class="desc">{{v.Desc}}</p>
+                            <!-- <div class="HomeViewMore">
+                                <router-link :to="'/cms/contentN/'+v.Id">{{$t('Message.LearnMore')}} >></router-link>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="pager" v-if="totalRecord > pageSize">
+                        <ins-page :total="totalRecord" v-model="currentPage" :pageNum="pageSize"></ins-page>
+                    </div>
+                </div>
+              </div>
+
+        </div>
       </div>
       </transition>
       <transition name="slide">
         <div class="faker" key="2" v-if="waiting" v-loading="true"></div>
       </transition>
-        <div class="NomralBg">
-            <p class="PathData"><router-link to="/" class="HomePath">{{$t('Message.HomeTips')}}</router-link><i class="el-icon-arrow-right"></i><span class="currentTitle">{{CateName}}</span></p>
-            <div class="cms-list">
-                <div class="perData" v-for="(v,index) in ListData" :key="index">
-                    <div class="left">
-                        <p class="imgs" @click="GoLink(v)"><img :src="v.Cover.indexOf('.png')!==-1 || v.Cover.indexOf('.jpg')!==-1 || v.Cover.indexOf('.jpeg')!==-1 || v.Cover.indexOf('.gif')!==-1?v.Cover:NoImg"></p>
-                    </div>
-                    <div class="right">
-                        <p class="title">{{v.Title}}</p>
-                        <p class="contentTime">{{v.ContentDateTime}}</p>
-                        <p class="desc">{{v.Desc}}</p>
-                        <div class="HomeViewMore">
-                            <router-link :to="'/cms/contentN/'+v.Id">{{$t('Message.LearnMore')}} >></router-link>
-                        </div>
-                    </div>
-                </div>
-                <div class="pager" v-if="totalRecord > pageSize">
-                    <ins-page :total="totalRecord" v-model="currentPage" :pageNum="pageSize"></ins-page>
-                </div>
-            </div>
-        </div>
+
     </div>
 </template>
 
@@ -154,34 +184,44 @@ export default class InsCatLayout1 extends Vue {
       }
     }
   }
-.cms-list {
+.cms {
+  .cms-list {
     width: 90%;
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
+    margin-top: 2rem;
         .perData {
             width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            border-bottom: 1px solid #e6e6e6;
-            padding-bottom: 2rem;
-            padding-top: 2rem;
+            // display: flex;
+            // flex-wrap: wrap;
+            // justify-content: space-between;
+            // border-bottom: 1px solid #e6e6e6;
+            // padding-bottom: 2rem;
+            // padding-top: 2rem;
+            margin-bottom: 2rem;
             .left {
-                width: 40%;
+                width: 100%;
                 .imgs {
                     width: 100%;
-                    display: inline-block;
+                    display: block;
+                    height: 15rem;
+                    overflow: hidden;
                     img {
                         width: 100%;
+                        display: block;
+                        height: 15rem;
+                        object-fit: cover;
+                        object-position: 50% 50%;
+                        border-radius: 5px;
                     }
                 }
             }
             .right {
-                width: 55%;
+                width: 100%;
                 .title {
-                    font-size: 1.2rem;
-                    color: #9f1e3c;
+                    font-size: 1.6rem;
+                    color: #333333;
                     text-overflow: -o-ellipsis-lastline;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -191,6 +231,7 @@ export default class InsCatLayout1 extends Vue {
                     -webkit-box-orient: vertical;
                     margin-top: .5rem;
                     margin-bottom: .5rem;
+                    font-weight: bold;
                 }
                 .contentTime {
                     font-size: 1.2rem;
@@ -199,16 +240,16 @@ export default class InsCatLayout1 extends Vue {
                 }
                  .desc {
                     font-size: 1.2rem;
-                    color: #333333;
-                    text-overflow: -o-ellipsis-lastline;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 4;
-                    line-clamp: 4;
-                    -webkit-box-orient: vertical;
-                    margin-top: .5rem;
-                    margin-bottom: .5rem;
+                    color: #666666;
+                    // text-overflow: -o-ellipsis-lastline;
+                    // overflow: hidden;
+                    // text-overflow: ellipsis;
+                    // display: -webkit-box;
+                    // -webkit-line-clamp: 4;
+                    // line-clamp: 4;
+                    // -webkit-box-orient: vertical;
+                    // margin-top: .5rem;
+                    // margin-bottom: .5rem;
                 }
                 .HomeViewMore {
                     width: 100%;
@@ -225,4 +266,6 @@ export default class InsCatLayout1 extends Vue {
             }
         }
 }
+}
+
 </style>

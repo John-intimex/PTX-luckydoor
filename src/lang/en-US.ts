@@ -70,7 +70,7 @@ export default {
     LoginNow: 'Login Now',
     NoMore: 'No More',
     Next: 'Next',
-    Prev: 'Prev',
+    Prev: 'Previous',
     Catalog: 'Catalog',
     AskFor: 'To ask for a quotation, press',
     ProductInformation: 'Product Information',
@@ -114,7 +114,7 @@ export default {
     LatestNews: 'Latest News'
   },
   product: {
-    ProductCode: 'Product Code',
+    ProductCode: 'Code',
     buy: 'Buy Now',
     addToCart: 'Add To Cart',
     buyNow: 'Buy now',
@@ -161,7 +161,8 @@ export default {
     Unit: 'Unit',
     Filter: 'Filter',
     ViewAll: 'View All',
-    SortBy: 'SortBy'
+    SortBy: 'SortBy',
+    Code: 'Code'
   },
   Shoppingcart: {
     ShoppingcartTitle: 'Shopping Cart ',
@@ -399,7 +400,7 @@ export default {
     confirm: 'Confirm',
     Total: 'Total',
     BacktoShoppingCart: 'Back to Shopping Cart',
-    Last: 'Last',
+    Last: 'Previous',
     Checkout: 'Check Out',
     Next: 'Next',
     Delivery: 'Delivery',
@@ -587,7 +588,7 @@ export default {
     CaseType: 'Case Type',
     Document: 'Document',
     MyAccount: 'My Account',
-    AddToEnquiry: 'Add To Enquiry',
+    AddToEnquiry: 'Add to enquiry form',
     YourRef: 'Your Ref.',
     ShippingInformation: 'Shipping Information',
     NegotiationBox: 'Negotiation Box',
@@ -597,6 +598,8 @@ export default {
     AddProduct: 'Add Product',
     Image: 'Image',
     ProductInformation: 'Product Information',
+    ProductPackingInformation: 'Product Packing Information',
+    ExportCarton: 'Export Carton',
     Quantity: 'Quantity',
     ProductCode: 'Product Code',
     ProductName: 'Product Name',
@@ -694,6 +697,11 @@ export default {
     Bargaining: 'Bargaining',
     SelectRegType: 'Please select a registration type',
     Individual: 'Individual',
-    Enterprise: 'Enterprise'
+    Enterprise: 'Enterprise',
+    SingleUnitpcs: 'Single Unitpcs',
+    Dimension: 'Dimension',
+    Package: 'Package',
+    PcsperCarton: 'Pcs per Carton',
+    CtnDimension: 'Ctn Dimension(cm)'
   }
 };

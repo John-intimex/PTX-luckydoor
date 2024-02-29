@@ -8,9 +8,9 @@
         </a>
       </swiper-slide>
       <!-- Optional controls -->
-      <div class="swiper-pagination" slot="pagination" v-if="swiperOption.pagination"></div>
-      <div class="swiper-button-prev" slot="button-prev" v-if="swiperOption.navigation && swiperOption.navigation.nextEl"></div>
-      <div class="swiper-button-next" slot="button-next" v-if="swiperOption.navigation && swiperOption.navigation.prevEl"></div>
+      <!-- <div class="swiper-pagination" slot="pagination" v-if="swiperOption.pagination"></div> -->
+      <!-- <div class="swiper-button-prev" slot="button-prev" v-if="swiperOption.navigation && swiperOption.navigation.nextEl"></div> -->
+      <!-- <div class="swiper-button-next" slot="button-next" v-if="swiperOption.navigation && swiperOption.navigation.prevEl"></div> -->
     </swiper>
   </div>
 </template>
@@ -92,6 +92,7 @@ export default class Banner extends Vue {
   .swiper-slide {
     img {
       width: 100%;
+      display: block;
     }
   }
 }

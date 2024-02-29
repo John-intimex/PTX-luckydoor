@@ -1,16 +1,17 @@
 <template>
     <li class="NsSearchItem">
           <p class="category">
-          {{searchGroup.Name}}
-            <i class="el-icon-arrow-up"  @click="isOpen = !isOpen" v-if="!isOpen"></i>
-            <i class="el-icon-arrow-down" @click="isOpen = !isOpen" v-else></i>
-        </p>
+          <!-- {{searchGroup.Name}} -->
+          Catalog
+            <!-- <i class="el-icon-arrow-up"  @click="isOpen = !isOpen" v-if="!isOpen"></i>
+            <i class="el-icon-arrow-down" @click="isOpen = !isOpen" v-else></i> -->
+          </p>
           <transition name="fade">
           <ul :class="{'open': isOpen}">
-            <li class="viewall" :class="{'borderLine':isAll}">
+            <!-- <li class="viewall" :class="{'borderLine':isAll}">
                 <input type="checkbox" :id="searchGroup.Name+'-All'" v-model="isAll" @click="checkAll($event,searchGroup)"  style="display:none;">
                 <label :for="searchGroup.Name+'-All'" >{{$t('Message.All')}}</label>
-            </li>
+            </li> -->
             <li v-for="(child, index2) in (searchType === 1 ? searchGroup.AttrValues : searchType === 2 ? searchGroup.Children : [])" :key="index2">
                 <input type="checkbox" :id="child.Name+index2" :value="child.Id" v-model="checkedValue" @click="selectAttr(searchGroup)"  style="display:none;">
                 <label :for="child.Name+index2" @click="checkLi(index2)">{{child.Name}}</label>
@@ -113,13 +114,14 @@ export default class InsAdvancedSearch extends Vue {
         border: 1px solid @base_color;
        }
       .viewall {
-        border-radius: .5rem;
-        background: #fff;
-        margin-top: 1rem;
+        // border-radius: .5rem;
+        // background: #fff;
+        // margin-top: 1rem;
+        padding-top: 0;
       }
       p.category {
         width: 100%;
-        font-size: 22px;
+        font-size: 28px;
         color: #333333;
         background-color: #FFF;
         display: -webkit-box;
@@ -132,10 +134,13 @@ export default class InsAdvancedSearch extends Vue {
         -ms-flex-negative: 0;
         flex-shrink: 0;
         position: relative;
-        height: 3.5rem;
-        line-height: 3.5rem;
-        border-radius: .3rem;
-        padding-top:10px;
+        letter-spacing: 2px;
+        margin-bottom: 16px;
+        font-weight: bold;
+        // height: 3.5rem;
+        // line-height: 3.5rem;
+        // border-radius: .3rem;
+        // padding-top:10px;
         i{
           position: absolute;
           right: 0px;
@@ -147,16 +152,32 @@ export default class InsAdvancedSearch extends Vue {
 
      >ul {
        transition: all 3s;
+       background-color: #f8f6f5;
+       border-radius: 8px;
+       padding: 20px;
+       box-sizing: border-box;
         >li {
-            height: 50px;
+          width: 100%;
+
+          margin: 0 auto;
+            // height: 50px;
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            background: #f2f1f0;
-            border-radius: .3rem;
-            margin-bottom: 1rem;
-            border:1px solid #f2f1f0;
+            // background: #f2f1f0;
+            // border-radius: .3rem;
+            // margin-bottom: 1rem;
+            border-bottom:1px solid #cccccc;
             cursor: pointer;
+            padding: 20px 0;
+            box-sizing: border-box;
+            &:first-child{
+              padding-top: 0;
+            }
+            &:last-child{
+              border-bottom: none;
+              padding-bottom: 0;
+            }
             input[type="checkbox"] {
                 width: 18px;
                 height: 18px;
@@ -174,18 +195,18 @@ export default class InsAdvancedSearch extends Vue {
                 background-size: auto;
 
                 &+label {
-                    color: @base_color;
+                    color: #f3bf26;
                 }
             }
 
             label {
-            font-size: 20px;
-            color: #666666;
-            width: 90%;
+            font-size: 18px;
+            color: #112a4d;
+            width: 100%;
             margin: 0 auto;
             cursor: pointer;
-            height: 50px;
-            line-height: 50px;
+            // height: 50px;
+            // line-height: 50px;
             }
         }
 

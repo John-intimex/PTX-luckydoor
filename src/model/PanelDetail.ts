@@ -196,6 +196,20 @@ export default class PanelDetail {
   public set Permission (v : string) {
     this._Permission = v;
   }
+  private _PackagingInfo : string;
+  public get PackagingInfo () : string {
+    return this._PackagingInfo;
+  }
+  public set PackagingInfo (v : string) {
+    this._PackagingInfo = v;
+  }
+  private _ProductDimension : string;
+  public get ProductDimension () : string {
+    return this._ProductDimension;
+  }
+  public set ProductDimension (v : string) {
+    this._ProductDimension = v;
+  }
   private _negotiable : boolean;
   public get negotiable () : boolean {
     return this._negotiable;
@@ -219,7 +233,7 @@ export default class PanelDetail {
     this._CatPathName = v;
   }
   public button: Button[] = [];
-  constructor (sku:string, name:string, code:string, Permission:string, listPrice:number, salePrice:number, DefaultListPrice:number, DefaultSalePrice:number, _YoutubeLink:string, overView:string = '', Specification:string = '', CatPathName:string, attrList:ProductAttr[][] = [], extAttrList:ProductAttr[][] = [], productStatus:number = 3, currency:Currency = new Currency(), DefaultCurrency:Currency = new Currency(), _MaxPurQty:number = 0, _MinPurQty:number = 1, _CatId = 0, _CatalogTree = [], _IsFavorite:boolean = false, _negotiable:boolean = false, _Score:number = 0, _negotiateMinQty:number = 0, _UnitInfo:object = {}, _SoldOutAttrComboList = [], _AttrComboImgList = []) {
+  constructor (sku:string, name:string, code:string, Permission:string, PackagingInfo:string, ProductDimension:string, listPrice:number, salePrice:number, DefaultListPrice:number, DefaultSalePrice:number, _YoutubeLink:string, overView:string = '', Specification:string = '', CatPathName:string, attrList:ProductAttr[][] = [], extAttrList:ProductAttr[][] = [], productStatus:number = 3, currency:Currency = new Currency(), DefaultCurrency:Currency = new Currency(), _MaxPurQty:number = 0, _MinPurQty:number = 1, _CatId = 0, _CatalogTree = [], _IsFavorite:boolean = false, _negotiable:boolean = false, _Score:number = 0, _negotiateMinQty:number = 0, _UnitInfo:object = {}, _SoldOutAttrComboList = [], _AttrComboImgList = []) {
     this._Name = name;
     this._Sku = sku;
     this._Code = code;
@@ -247,6 +261,8 @@ export default class PanelDetail {
     this._SoldOutAttrComboList = _SoldOutAttrComboList;
     this._AttrComboImgList = _AttrComboImgList;
     this._Permission = Permission;
+    this._PackagingInfo = PackagingInfo;
     this._CatPathName = CatPathName;
+    this._ProductDimension = ProductDimension;
   }
 }

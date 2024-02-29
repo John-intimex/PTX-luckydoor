@@ -15,16 +15,42 @@
     </div>
     <div class="productPtx"  v-if="panelDetail.negotiable">
         <div class="productInfo">
-          <p class="TitleBg"><span>{{$t('Message.ProductInformation')}}</span></p>
+          <p class="TitleBg"><span>{{$t('Enquiry.ProductInformation')}}</span></p>
           <div class="InnerTable">
-            <p class="perline"><span class="left">{{$t('Enquiry.MinOrderQty')}}</span><span class="right">{{panelDetail.MinPurQty}}</span></p>
-            <p class="perline"><span class="left">{{$t('Enquiry.negotiateMinQty')}}</span><span class="right">{{panelDetail.negotiateMinQty}}</span></p>
+            <!-- <p class="perline"><span class="left">{{$t('Enquiry.MinOrderQty')}}</span><span class="right">{{panelDetail.MinPurQty}}</span></p> -->
+            <!-- <p class="perline"><span class="left">{{$t('Enquiry.negotiateMinQty')}}</span><span class="right">{{panelDetail.negotiateMinQty}}</span></p> -->
             <p class="perline"><span class="left">{{$t("product.ProductCode")}}</span><span class="right">{{panelDetail.Code}}</span></p>
             <p class="perline"><span class="left">{{$t('Message.Catalog')}}</span>
             <span class="right">
-              <router-link to="/" class="NormalColor">{{$t('Message.HomeTips')}}</router-link> > <span v-for="(v,index) in panelDetail.CatalogTree" :key="index"><router-link class="redColor" :to="'/product/search/-?' + 'catalogs=' + JSON.stringify([v.Id]) + '&type=0'" v-if="v.ParentId!=0">{{v.Name}}</router-link></span>
+              <!-- <router-link to="/" class="NormalColor">{{$t('Message.HomeTips')}}</router-link> >  -->
+              <span v-for="(v,index) in panelDetail.CatalogTree" :key="index"><router-link class="redColor" :to="'/product/search/-?' + 'catalogs=' + JSON.stringify([v.Id]) + '&type=0'" v-if="v.ParentId!=0">{{v.Name}}</router-link></span>
             </span>
             </p>
+          </div>
+        </div>
+        <div class="productInfo">
+          <p class="TitleBg"><span>{{$t('Enquiry.ProductPackingInformation')}}</span></p>
+          <div class="InnerTable">
+            <p class="perline"><span class="left">{{$t('Enquiry.SingleUnitpcs')}}</span>
+            <span class="right">
+             {{panelDetail.UnitInfo.Desc}}
+              <!-- pcs -->
+              </span>
+            </p>
+            <p class="perline"><span class="left">{{$t('Enquiry.Dimension')}}</span><span class="right">{{panelDetail.PackagingInfo}}</span></p>
+            <p class="perline">
+              <span class="left">{{$t("Enquiry.Package")}}</span>
+              <!-- <span class="right">{{panelDetail.Permission}}</span> -->
+            </p>
+          </div>
+        </div>
+        <div class="productInfo">
+          <p class="TitleBg"><span>{{$t('Enquiry.ExportCarton')}}</span></p>
+          <div class="InnerTable">
+            <p class="perline"><span class="left">{{$t('Enquiry.PcsperCarton')}}</span>
+            <!-- <span class="right">{{panelDetail.Width}}</span> -->
+            </p>
+            <p class="perline"><span class="left">{{$t("Enquiry.CtnDimension")}}</span><span class="right">{{panelDetail.ProductDimension}}</span></p>
           </div>
         </div>
         <div class="productInfo">
@@ -34,7 +60,7 @@
             </div>
         </div>
     </div>
-    <div class="in_unitInfo" v-if="panelDetail.UnitInfo.Desc!==null">{{$t('product.Unit')}}:{{panelDetail.UnitInfo.Desc}}</div>
+    <!-- <div class="in_unitInfo" v-if="panelDetail.UnitInfo.Desc!==null">{{$t('product.Unit')}}:{{panelDetail.UnitInfo.Desc}}</div> -->
 
 </div>
 </template>
@@ -113,7 +139,7 @@ export default class PkProductInfo extends Vue {
 .in_panel_product{
     width: 90%;
     margin: 0 auto;
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -174,14 +200,31 @@ export default class PkProductInfo extends Vue {
   .TitleBg {
     height: 3rem;
     line-height: 3rem;
-    background: #cab597;
+    background: #f8f8f8;
     span {
-      width: 90%;
-      margin: 0 auto;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       display: flex;
       flex-wrap: wrap;
       color: #fff;
+      width: 17rem;
+      height: 3rem;
+      // margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      color: #fff;
+      background-color: #112a4d;
+      padding-left: 1rem;
+      position: relative;
+      &::after{
+        content: '';
+        width: 0;
+        height: 0;
+        border-bottom: 3rem solid #112a4d;
+        border-right: 2.4rem solid transparent;
+        position: absolute;
+        right: -2.4rem;
+        bottom: 0;
+      }
     }
   }
   .InnerTable {
@@ -194,12 +237,12 @@ export default class PkProductInfo extends Vue {
       justify-content: space-between;
       margin-top: 1rem;
       .left{
-        width: 48%;
+        width: 38%;
         font-size: 1.2rem;
       }
       .right {
-        width: 48%;
-        font-size: 1.2rem;
+        width: 60%;
+        font-size: 1rem;
       }
     }
   }

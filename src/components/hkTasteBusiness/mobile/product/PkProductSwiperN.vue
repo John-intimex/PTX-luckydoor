@@ -94,17 +94,22 @@ export default class PkProductSwiper extends Vue {
   .swiper-pagination-bullet{
     width: 10px!important;
     height: 10px!important;
-    background: #e6e6e6;
+    background: transparent;
+    border: 1px solid #112a4d;
+    border-radius: 50%;
     opacity: 1;
     margin-right: 10px;
   }
   .swiper-pagination-bullet-active{
-    background: #b19162!important;
+    background: #112a4d!important;
   }
 .swiper-pagination{
       margin-top: -1rem;
       transform: translateX(-50%) translateY(-50%);
       left: 50%;
+  }
+  .swiper-container{
+    border: 1px solid #cccccc;
   }
 }
 </style>

@@ -34,8 +34,8 @@
           <NsadvancedSearch @advancedChange="advancedChange" v-if="isAdvanced"  @closeSub="closeSub" @resetAll="resetAll" />
         </div>
       </div>
-      <div class="selectBar">
-          <ul>
+      <!-- <div class="selectBar"> -->
+          <!-- <ul>
             <div class="left">
               <li @click="showSearchSlide" class="liTop"><span class="filterIcon"></span><b>{{$t('product.Screening')}}</b></li>
             </div>
@@ -66,11 +66,17 @@
               </transition>
             </li>
             </div>
-          </ul>
-        </div>
+          </ul> -->
+        <!-- </div> -->
       <div class="NsProduct">
+        <!-- <div class="banner">
+          <img src="/images/pc/searchback.jpg" alt="">
+        </div> -->
           <transition name="slide">
             <div key="1" v-if="!waiting">
+              <div class="prolisttext">
+                <p><span>{{ProductTotalRecord}}</span> items meet your searching criterion</p>
+              </div>
               <div class="prolist-box" v-if="proList.length > 0">
                 <ins-productList :column="4" :allItems="proList" class="productPer" />
                   <div class="pager" v-if="totalRecord > pageSize">
@@ -118,7 +124,7 @@ import $ from 'jquery';
 export default class InsProductSearch extends Vue {
   proList: YouWouldLike[] = []; // 产品数据
   currentPage: number = 1; // 当前页
-  pageSize: number = 12; // 每页显示条目个数
+  pageSize: number = 9; // 每页显示条目个数
   totalRecord: number = 0; // 总条目数
   private tips: boolean = true;
   private LoadingInstance!: any;
@@ -133,7 +139,9 @@ export default class InsProductSearch extends Vue {
   SortName:string = '';
   private waiting: boolean = true;
   SellType:number=0;
-  ShowSellType:boolean =false
+  ShowSellType:boolean =false;
+  ProductTotalPage: string='';
+  ProductTotalRecord: string='';
   // 搜索关键词
   get searchKey() {
     let a = this.$route.params.key;
@@ -217,6 +225,8 @@ export default class InsProductSearch extends Vue {
           this.totalRecord = result.TotalRecord;
           this.waiting = false;
           this.$HiddenLayer();
+          this.ProductTotalPage = result.TotalPage;
+          this.ProductTotalRecord = result.TotalRecord;
         });
     }, 500);
   }
@@ -288,20 +298,39 @@ export default class InsProductSearch extends Vue {
   min-height: 700px;
 }
 .NsProduct {
-  width: 100%;
-  display: inline-block;
-  margin-top: 20px;
+  width: 942px;
+  display: block;
+  // margin-top: 20px;
+  float: right;
     /deep/ .products_container{
       .product_item {
-        width: 23%!important;
-        margin-right: 2.33%;
+        width: 300px!important;
+        margin-right: 20px;
         &:nth-child(3n) {
-          margin-right: 2.33%!important;
-        }
-        &:nth-child(4n) {
-          margin-right: 0px!important;
+          margin-right: 0;
         }
       }
+  }
+  .prolisttext{
+    margin-top: 24px;
+    margin-bottom: 24px;
+    text-align: right;
+    p{
+      color: #333333;
+      font-size: 18px;
+      font-family: Arial;
+      letter-spacing: 2px;
+      span{
+        color: #f0bb23;
+        font-family: Arial;
+      }
+    }
+  }
+  .banner{
+    img{
+      display: block;
+      width: 100%;
+    }
   }
 }
 .ProductTips {
@@ -372,23 +401,23 @@ export default class InsProductSearch extends Vue {
   }
 }
 .SearchSlide {
-  width: 100%;
-  position: fixed;
+  width: 240px;
+  // position: fixed;
   left: 0;
   top: 0px;
   bottom: 0px;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 999999;
-  display: none;
+  // background: rgba(0, 0, 0, 0.6);
+  // z-index: 999999;
+  // display: none;
   .leftSide {
-    width: 20%;
-    left: -20%;
-    min-height: 100%;
-    position: absolute;
-    transition: all 0.5s;
-    background: #f2f1f0;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+    width: 240px;
+    // left: -20%;
+    // min-height: 100%;
+    // position: absolute;
+    // transition: all 0.5s;
+    // background: #f2f1f0;
+    // border-top-right-radius: 1rem;
+    // border-bottom-right-radius: 1rem;
     overflow: hidden;
   }
 }

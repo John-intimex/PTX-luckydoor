@@ -1,9 +1,9 @@
 <template>
     <div class="NsAdvancedSearch">
-      <div class="TopMeun">
+      <!-- <div class="TopMeun">
           <p class="resetTitle">{{$t('product.Filter')}}<span class="el-icon-close" @click="closeSub"></span></p>
           <p class="resetAll" @click="resetAll">{{$t('Message.ResetOptions')}}</p>
-       </div>
+       </div> -->
         <ul class="attrSearch" v-if="init" style="display:none;">
           <NsReSearchItem v-for="(attr, index) in attrList" :key="index" :searchGroup="attr" :defaultSelected="deAttrGIds.indexOf(attr.Id) !== -1 ? selectedAttrs[deAttrGIds.indexOf(attr.Id)].Vals : []"  @changeSelect="changeAttrSelect" />
         </ul>
@@ -270,10 +270,10 @@ export default class NsAdvancedSearch extends Vue {
 </script>
 <style scoped lang="less">
 .NsAdvancedSearch {
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  // border-top-right-radius: 1rem;
+  // border-bottom-right-radius: 1rem;
   overflow: auto;
-  height: 100vh;
+  // height: 100vh;
     .TopMeun {
     background: #fff;
     padding-bottom: 1rem;
@@ -282,13 +282,18 @@ export default class NsAdvancedSearch extends Vue {
     border-bottom-right-radius: 1rem;
   }
   .catSearch {
-    margin-top: 1rem;
+    // margin-top: 1rem;
     overflow: hidden;
     background: #fff;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    padding-left: 5%;
-    padding-right: 5%;
+    // border-top-right-radius: 1rem;
+    // border-bottom-right-radius: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border: 1px solid #cccccc;
+    width: 90%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border-radius: 8px;
   }
   .resetAll{
     color: #FFF;

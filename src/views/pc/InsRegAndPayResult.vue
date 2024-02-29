@@ -88,15 +88,18 @@ export default class Result extends Vue {
     keycontent:string='';
     getSubmitComplete (id) {
       this.$Api.regAndPay.getSubmitComplete(id).then(result => {
-        this.result = result.ReturnValue;
-        this.keycontent = result.ReturnValue.Key;
-        this.$Api.regAndPay.genForm(this.keycontent, this.lang, false).then(result => {
-          this.payed = result.ReturnValue.IsPay;
+        console.log(result, '/regnpay/result/d9dfd6a1-dd0b-4eff-8355-92ad7c2f0e28');
+        this.result = result.data.ReturnValue;
+        this.keycontent = result.data.ReturnValue.Key;
+        this.$Api.regAndPay.getHtml(this.keycontent, this.lang, false).then(result => {
+          console.log(result, 'resultresultresultresult');
+          this.payed = result.IsPay;
         });
-        console.log(this.keycontent, 'this.keycontentthis.keycontent');
-        if (result.ReturnValue.IsPayed) this.$Confirm(this.$t('Message.Message'), this.$t('Order.Paid'));
-        if (result.ReturnValue.Amount > 0 && !result.ReturnValue.IsPayed) {
-            this.paymentMethods = result.ReturnValue.PaymentType;
+
+        if (result.data.ReturnValue.IsPayed) this.$Confirm(this.$t('Message.Message'), this.$t('Order.Paid'));
+        console.log(result.data.ReturnValue.PaymentType, 'this.keycontentthis.keycontent');
+        if (result.data.ReturnValue.Amount > 0 && !result.data.ReturnValue.IsPayed) {
+            this.paymentMethods = result.data.ReturnValue.PaymentType;
         } else if (this.result.NextFormKey) {
           let NextFormKey = this.result.NextFormKey;
           setTimeout(() => {
@@ -124,7 +127,9 @@ export default class Result extends Vue {
         alert(this.$t('Input.selectPayment') as string);
       } else {
         this.$Api.regAndPay.savePayMethod(this.paymentMethod.Id, this.result.Id).then(result => {
-          if (result.Succeeded) {
+          console.log(result);
+          if (result.data.Succeeded) {
+            console.log('2222222222222222');
             // this.$router.push({ path: '/payment/' + this.paymentMethod.Code + '/' + this.result.Id });
             this.$pay(this.paymentMethod.Code, this.result.Id, 1);
           } else {

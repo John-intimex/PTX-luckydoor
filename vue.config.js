@@ -17,7 +17,7 @@ if (param === 'dev') {
 
 function getArgList() {
     let argv = process['argv'];
-    let mode = 'dev';
+    let mode = 'uat';
     try {
         mode = argv[3].split('=')[1];
     } catch (e) {

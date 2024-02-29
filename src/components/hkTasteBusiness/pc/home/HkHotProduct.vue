@@ -1,6 +1,9 @@
 <template>
   <div class="productBox">
-     <div class="TitleBg"><div class="innerBox">{{$t('Cms.BigSales')}}</div></div>
+     <div class="TitleBg">
+      <!-- <div class="innerBox">{{$t('Cms.BigSales')}}</div> -->
+      <img src="/images/pc/pcindex_39.png" alt="">
+    </div>
     <div class="swiper-container swiper-container-hot">
         <swiper :options="swiperOption" ref="mySwiper">
         <!-- slides -->
@@ -75,12 +78,13 @@ export default class PkHotProduct extends Vue {
 </style>
 <style lang="less" scoped>
 .TitleBg{
-  width: 400px;
-  height: 5rem;
-  border:1px solid #4d4d4d;
-  margin: 0 auto;
-  padding: .5rem;
-  margin-bottom: 2rem;
+  // width: 400px;
+  // height: 5rem;
+  // border:1px solid #4d4d4d;
+  // margin: 0 auto;
+  // padding: .5rem;
+  // margin-bottom: 2rem;
+  text-align: center;
   .innerBox{
     width: 100%;
     height: 100%;
@@ -95,7 +99,7 @@ export default class PkHotProduct extends Vue {
   }
 }
 .productBox {
-  margin-top: 3rem;
+  // margin-top: 3rem;
 }
 .productBox a{
     text-decoration: none;

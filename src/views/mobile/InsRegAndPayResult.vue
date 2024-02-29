@@ -88,14 +88,14 @@ export default class Result extends Vue {
     keycontent:string='';
     getSubmitComplete (id) {
       this.$Api.regAndPay.getSubmitComplete(id).then(result => {
-        this.result = result.ReturnValue;
-        this.keycontent = result.ReturnValue.Key;
-        this.$Api.regAndPay.genForm(this.keycontent, this.lang, false).then(result => {
-          this.payed = result.ReturnValue.IsPay;
+        this.result = result.data.ReturnValue;
+        this.keycontent = result.data.ReturnValue.Key;
+        this.$Api.regAndPay.getHtml(this.keycontent, this.lang, false).then(result => {
+          this.payed = result.IsPay;
         });
-        if (result.ReturnValue.IsPayed) this.$Confirm(this.$t('Message.Message'), this.$t('Order.Paid'));
-        if (result.ReturnValue.Amount > 0 && !result.ReturnValue.IsPayed) {
-            this.paymentMethods = result.ReturnValue.PaymentType;
+        if (result.data.ReturnValue.IsPayed) this.$Confirm(this.$t('Message.Message'), this.$t('Order.Paid'));
+        if (result.data.ReturnValue.Amount > 0 && !result.data.ReturnValue.IsPayed) {
+            this.paymentMethods = result.data.ReturnValue.PaymentType;
         } else if (this.result.NextFormKey) {
           let NextFormKey = this.result.NextFormKey;
           setTimeout(() => {
@@ -123,7 +123,7 @@ export default class Result extends Vue {
         alert(this.$t('Input.selectPayment') as string);
       } else {
         this.$Api.regAndPay.savePayMethod(this.paymentMethod.Id, this.result.Id).then(result => {
-          if (result.Succeeded) {
+          if (result.data.Succeeded) {
             // this.$router.push({ path: '/payment/' + this.paymentMethod.Code + '/' + this.result.Id });
             this.$pay(this.paymentMethod.Code, this.result.Id, 1);
           } else {

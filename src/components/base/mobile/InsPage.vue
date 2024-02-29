@@ -11,7 +11,7 @@
     </div> -->
     <span class="last" :class="{ 'noClick': Page === 1 }" @click="current--">{{$t('CheckOut.Last')}} </span>
     <select v-model="current" class="selectPage">
-      <option v-for="(item,index) in T" :value ="index + 1" :key="index" >{{ $t('product.per') + ' ' + (index + 1) + ' ' + $t('product.page')}}</option>
+      <option v-for="(item,index) in T" :value ="index + 1" :key="index" >{{  (index + 1) }}</option>
     </select>
     <span class="pageing"> / {{$t('CheckOut.Total') + Math.ceil(this.total / this.pageNum) + $t('product.page')}} </span>
     <span class="next" :class="{ 'noClick': Page === T.length }" @click="current++">{{$t('CheckOut.Next')}} </span>
@@ -130,39 +130,58 @@ input[type="number"]{
   border-left: 1px solid @base_color;
 }
 .last,.next{
-  height: 2.3rem;
-  line-height: 2.3rem;
+  height: 3rem;
+  line-height: 2.8rem;
   cursor: pointer;
   display: inline-block;
-  border: 1px solid @base_color;
-  margin:0 .5rem;
-  padding: 0 1rem;
+  border: 1px solid #112a4d;
+  background-color: #112a4d;
+  margin: 0 0.5rem;
+  /* padding: 0 1.5rem; */
   font-size: 1.2rem;
+  box-sizing: border-box;
+  color: #fff;
+  border-radius: 3px;
+  width: 7rem;
+  text-align: center;
 }
 .noClick{
-  color: black;
+  color: #fff;
   background: white;
   cursor: not-allowed;
   border: 1px solid @base_color;
-  line-height: 2.3rem;
+  line-height: 2.8rem;
   display: inline-block;
   font-size: 1.2rem;
+  box-sizing: border-box;
+  background-color: #112a4d;
 }
 .selectPage{
-    border: 1px solid @base_color;
-    height: 2.45rem;
-    padding: 0 0.5rem;
-    -webkit-box-sizing: border-box;
+    border: 1px solid #666666;
+    height: 3rem;
+    padding: 0 2rem;
     box-sizing: border-box;
     outline: 0;
-    background: @base_color;
-    color: #fff;
+    /* background: @base_color; */
+    color: #666666;
     font-size: 1.2rem;
+    /* border-radius: 5px; */
+    width: 7rem;
+    font-weight: bold;
+    background: transparent url('/images/pc/down.png') 80% 50% no-repeat;
+    background-size: 14px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    outline: none;
 }
 .pageing{
-  letter-spacing: 2px;
-  margin-left: 5px;
-  margin-right: 5px;
-  font-size: 1.2rem;
+  letter-spacing: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 1.2rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
 }
 </style>

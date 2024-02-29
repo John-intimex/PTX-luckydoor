@@ -1,13 +1,17 @@
 <template>
   <div :style="styla" v-if="ShowItemsLength > 0 ">
     <div class="productCat">
-          <p class="NoramlTitle"><span class="text">{{title}}</span></p>
-          <swiper  :options="SWproductCatOption" ref="mySwiper" v-if="InnerItems.length > 0">
+          <p class="NoramlTitle">
+            <!-- <span class="text">{{title}}</span> -->
+            <img src="/images/pc/details_15.png" alt="">
+          </p>
+          <swiper  :options="SWproductCatOptionyou" ref="mySwiper" v-if="InnerItems.length > 0">
             <!-- slides -->
             <swiper-slide v-for="(item, index) in InnerItems" :key="index">
-                  <inProductWindow :item="item" :imgStyla="imgStyla" styla="width:90%;margin:0 auto;padding-bottom:2rem;margin-bottom: 2rem;"></inProductWindow>
+                  <inProductWindow :item="item" :imgStyla="imgStyla"></inProductWindow>
             </swiper-slide>
-            <div class="swiper-pagination pwswiper" slot="pagination" v-if="SWproductCatOption.pagination"></div>
+            <!-- <div class="swiper-pagination pwswiper" slot="pagination" v-if="SWproductCatOption.pagination"></div> -->
+            <div class="swiper-scrollbar pwswiper" slot="pagination"></div>
           </swiper>
        </div>
     <!-- <div class="productBox">
@@ -34,13 +38,17 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper/src';
 })
 export default class InsYouWouldLike2 extends Vue {
   // data
-  SWproductCatOption = {
+  SWproductCatOptionyou = {
     slidesPerView: 2,
     spaceBetween: 20,
-    pagination: {
-      el: '.pwswiper',
-      clickable: true
+    scrollbar: {
+      el: '.swiper-scrollbar',
+      hide: true
     }
+    // pagination: {
+    //   el: '.pwswiper',
+    //   clickable: true
+    // }
   };
   private InnerItems: YouWouldLike[] = [];
   private InnerItemsCopy: YouWouldLike[] = [];
@@ -95,16 +103,23 @@ export default class InsYouWouldLike2 extends Vue {
   padding-bottom:2rem;
 }
   .NoramlTitle {
-    background: url('/images/mobile/ptx_14.png') no-repeat center center;
-    background-size: contain;
+    // background: url('/images/mobile/ptx_14.png') no-repeat center center;
+    // background-size: contain;
+    // display: flex;
+    // flex-wrap: wrap;
+    // position: relative;
+    // width: 60%;
+    // height: 3rem;
+    // margin: 0 auto;
+    // justify-content: center;
+    // align-items: center;
     display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    width: 60%;
-    height: 3rem;
-    margin: 0 auto;
     justify-content: center;
-    align-items: center;
+    width: 100%;
+    img{
+      width: 70%;
+      display: block;
+    }
     .text {
       font-size: 1.6rem;
       color: #fff;

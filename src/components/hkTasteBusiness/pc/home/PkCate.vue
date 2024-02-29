@@ -1,19 +1,35 @@
 <template>
   <div class="category_box">
     <div class="cateContainer">
-      <div class="category_box_left">
+      <div class="TitleBg">
+        <img src="/images/pc/pcindex_39.png" alt="">
+      </div>
+      <!-- <div class="category_box_left">
         <h2>{{$t('home.Category')}}</h2>
         <ul v-for="(a,index) in attrCategory" :key="index">
           <li @click="getSelectedAttrs(a)">{{a.Name}}</li>
-          <!-- <li v-for="(g,index) in a" :key="index"><a :href="'/product/search?key=+&grapeId='+g.Id">{{g.Name}}</a></li> -->
+          <li v-for="(g,index) in a" :key="index"><a :href="'/product/search?key=+&grapeId='+g.Id">{{g.Name}}</a></li>
         </ul>
-      </div>
+      </div> -->
     </div>
     <ul class="category_box_right">
       <li v-for="(b,index) in productCate" :key="index">
         <router-link
           :to="'/product/search/-?' + 'catalogs=' + JSON.stringify([b.Id]) + '&type=0'"
-        >{{b.Name}}</router-link>
+        >
+        <img :src="b.Img" alt="">
+        <p>
+          {{b.Name}}
+        </p>
+        </router-link>
+      </li>
+      <li>
+        <router-link to='/product/search/-'>
+        <img src="/images/pc/index_17.jpg" alt="">
+        <p>
+          Search
+        </p>
+        </router-link>
       </li>
     </ul>
     <div class="clear"></div>
@@ -47,6 +63,7 @@ export default class PkCate extends Vue {
   getProductCate () {
     this.$Api.product.getAttrList().then(result => {
       this.productCate = result[0].Children;
+      console.log(this.productCate, 'this.productCate');
     });
   }
   mounted () {
@@ -66,8 +83,16 @@ li {
   clear: both;
 }
 .category_box {
-  min-width: 1200px;
-  overflow: hidden;
+  width: 1200px;
+  margin: 0 auto;
+  padding-top: 80px;
+  padding-bottom: 48px;
+  // overflow: hidden;
+
+  .TitleBg{
+    text-align: center;
+    margin-bottom: 42px;
+  }
 }
 .category_box a {
   color: #fff;
@@ -111,25 +136,60 @@ li {
   -webkit-box-orient: vertical;
 }
 .category_box_right {
-  width: 75%;
-  float: right;
+  width: 100%;
+  // float: right;
 }
 .category_box_right li {
-  width: 25%;
-  height: 0;
-  padding-bottom: 24.4%;
+  width: 400px;
+  height: 344px;
+  // margin-right: 28px;
+  // margin-bottom: 38px;
   float: left;
   box-sizing: border-box;
-}
-.category_box_right li a {
-  display: block;
-  font-size: 1.9vw;
-  margin-left: 11%;
-  margin-top: 15%;
-  font-family: "FuturaNext";
-}
-.category_box_right li {
-  background: url('/static/Image/home/index04.jpg') 0 0 no-repeat;
-  background-size: cover;
+  // background-color: red;
+  &:nth-child(3n){
+    margin-right: 0;
+  }
+  a {
+    display: block;
+    border: 2px solid #193152;
+    position: relative;
+    transition: all 0.3s;
+    img{
+      width: 100%;
+      height: 340px;
+      display: block;
+      object-fit: cover;
+      object-position: 50% 50%;
+    }
+    p{
+      width: 100%;
+      height: 60px;
+      background-color: #112a4d;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      text-transform: uppercase;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      transition: height 0.3s;
+    }
+  }
+  &:hover{
+    a{
+      p{
+        height: 100%;
+        background-color: rgba(28, 56, 96, 0.8);
+        font-size: 36px;
+        text-transform: height 0.3s;
+      }
+    }
+  }
 }
 </style>

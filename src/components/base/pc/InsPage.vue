@@ -2,7 +2,7 @@
   <div class="page_warrper" :style="styla">
     <span class="last" :class="{ 'noClick': Page === 1 }" @click="current--">{{$t('CheckOut.Last')}} </span>
     <select v-model="current" class="selectPage">
-      <option v-for="(item,index) in T" :value ="index + 1" :key="index" >{{ $t('product.per') + ' ' + (index + 1) + ' ' + $t('product.page')}}</option>
+      <option v-for="(item,index) in T" :value ="index + 1" :key="index" >{{(index + 1)}}</option>
     </select>
     <span class="pageing"> / {{$t('CheckOut.Total') + Math.ceil(this.total / this.pageNum) + $t('product.page')}} </span>
     <span class="next" :class="{ 'noClick': Page === T.length }" @click="current++">{{$t('CheckOut.Next')}} </span>
@@ -58,6 +58,7 @@ export default class InsPage extends Vue {
 <style scoped lang="less">
 .page_warrper {
   margin: 50px auto;
+  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -126,39 +127,53 @@ input[type="number"]{
   border-left: 1px solid @base_color;
 }
 .last,.next{
-  height: 2.3rem;
-  line-height: 2.3rem;
+  height: 50px;
+  line-height: 50px;
   cursor: pointer;
   display: inline-block;
-  border: 1px solid @base_color;
-  margin:0 .5rem;
-  padding: 0 1rem;
+  border: 1px solid #112a4d;
+  margin:0 16px;
+  padding: 0 24px;
   font-size: 16px;
+  background-color: #112a4d;
+  box-sizing: border-box;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: bold;
 }
 .noClick{
-  color: black;
-  background: white;
+  color: #fff;
   cursor: not-allowed;
-  border: 1px solid @base_color;
-  line-height: 2.3rem;
+  border: 1px solid #112a4d;
+  background-color: #112a4d;
+  line-height: 50px;
   display: inline-block;
   font-size: 16px;
 }
 .selectPage{
-    border: 1px solid @base_color;
-    height: 2.45rem;
-    padding: 0 0.5rem;
-    -webkit-box-sizing: border-box;
+    border: 1px solid #666666;
+    height: 50px;
+    padding: 0 36px;
     box-sizing: border-box;
     outline: 0;
-    background: @base_color;
-    color: #fff;
+    // background: @base_color;
+    color: #666666;
     font-size: 16px;
+    // border-radius: 5px;
+    width: 102px;
+    font-weight: bold;
+    background: transparent url(/images/pc/down.png) 80% 50% no-repeat;
+    background-size: 14px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    outline: none;
 }
 .pageing{
-  letter-spacing: 2px;
-  margin-left: 5px;
-  margin-right: 5px;
+  // letter-spacing: 2px;
+  margin-left: 12px;
+  margin-right: 12px;
   font-size: 16px;
+  color: #666666;
 }
 </style>

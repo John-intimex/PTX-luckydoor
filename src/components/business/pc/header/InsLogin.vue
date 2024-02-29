@@ -420,8 +420,8 @@ export default class InsLogin extends Vue {
 /*头部登录弹框 css*/
 .handle-icon {
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 24px;
   color: #cccccc;
   -webkit-transition-duration: 0.1s;
   transition-duration: 0.1s;
@@ -431,8 +431,8 @@ export default class InsLogin extends Vue {
   transition-timing-function: ease-out;
 }
 .member-icon {
-  background: url("/images/mobile/ptx_12.png") no-repeat center center;
-  background-size: contain;
+  background: url("/images/pc/ptx_12.png") no-repeat center center;
+  background-size: cover;
 }
 
 #topLoginMessage {

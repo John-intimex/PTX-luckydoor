@@ -1,6 +1,9 @@
 <template>
   <div :style="styla" v-if="ShowItemsLength>0" class="PcVersionYouLike">
-    <p class="NoramlTitle"><span class="text">{{title}}</span></p>
+    <p class="NoramlTitle">
+      <!-- <span class="text">{{title}}</span> -->
+      <img src="/images/pc/details_15.png" alt="">
+    </p>
     <swiper :options="SwiperOption" ref="mySwiper">
       <!-- slides -->
       <swiperSlide v-for="(page,idx) in ShowItems" :key="idx">
@@ -12,9 +15,10 @@
           </div>
         </div>
       </swiperSlide>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
+
     </swiper>
+    <div class="swiper-button-prev swiper-button-prev-like" slot="button-prev"></div>
+      <div class="swiper-button-next swiper-button-next-like" slot="button-next"></div>
   </div>
 </template>
 <script lang="ts">
@@ -33,8 +37,8 @@ export default class InsYouWouldLike extends Vue {
   // data
   private SwiperOption = {
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
+      nextEl: '.swiper-button-next.swiper-button-next-like',
+      prevEl: '.swiper-button-prev.swiper-button-prev-like'
     }
   };
   private InnerItems: YouWouldLike[] = [];
@@ -91,37 +95,51 @@ export default class InsYouWouldLike extends Vue {
 </script>
 <style lang="less">
 .PcVersionYouLike .swiper-button-prev{
-      width: 40px;
-      height: 40px;
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
-      border:1px solid #c4a982;
-      background:#c4a982 url('/images/mobile/other_31.png') no-repeat center center!important;
+      width: 30px;
+      height: 54px;
+      // border-top-right-radius: 5px;
+      // border-bottom-right-radius: 5px;
+      // border:1px solid #c4a982;
+      background: url('/images/pc/details_19.png') no-repeat center center!important;
       background-size: 15px;
       outline: 0;
-      left:.9rem;
+      left:-30px;
+      margin-top: 0;
 }
 .PcVersionYouLike .swiper-button-next{
-      width: 40px;
-      height: 40px;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-      border:1px solid #c4a982;
-      background: #c4a982 url('/images/mobile/other_32.png') no-repeat center center!important;
+      width: 30px;
+      height: 54px;
+      // border-top-left-radius: 5px;
+      // border-bottom-left-radius: 5px;
+      // border:1px solid #c4a982;
+      background:  url('/images/pc/details_22.png') no-repeat center center!important;
       background-size: 15px;
       outline: 0;
-      right: .9rem;
+      right: -30px;
+      margin-top: 0;
+}
+.PcVersionYouLike .swiper-wrapper{
+  width: 1086px;
+}
+.PcVersionYouLike {
+  .Code{
+    display: none;
+  }
+  .in_pdWindow_item_title{
+    font-size: 20px;
+    color: #333333;
+  }
 }
 </style>
-<style  lang="less"  scoped>
+<style lang="less" scoped>
   .NoramlTitle {
-    background: url('/images/mobile/ptx_14.png') no-repeat center center;
+    // background: url('/images/mobile/ptx_14.png') no-repeat center center;
     background-size: contain;
     display: flex;
     flex-wrap: wrap;
     position: relative;
     width: 60%;
-    height: 3rem;
+    // height: 3rem;
     margin: 0 auto;
     justify-content: center;
     align-items: center;
@@ -135,6 +153,7 @@ export default class InsYouWouldLike extends Vue {
   }
 .PcVersionYouLike {
   margin-top: 80px;
+  position: relative;
 }
 .in_slider_title {
   text-align: center;
