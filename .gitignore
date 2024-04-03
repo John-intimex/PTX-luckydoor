@@ -19,6 +19,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+*.rar
 /.vs
 public/images/mobile/mobileIndex_29 - 副本 - 副本.png
 public/images/pc/index_32 - 副本.png

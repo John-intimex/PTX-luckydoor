@@ -250,6 +250,7 @@ export default class InsProductSearch extends Vue {
 
   mounted() {
     // this.productSearch();
+    this.ShowSellType = true;
   }
 
   @Watch('searchKey', { deep: true })

@@ -100,6 +100,7 @@ export default class InsCalendar extends Vue {
     box-sizing: border-box;
     padding-top: 25px;
     width: 570px;
+    margin: 0 auto;
     .el-calendar__header {
         border-bottom: 0;
         position: relative;
@@ -144,11 +145,12 @@ export default class InsCalendar extends Vue {
         tbody {
             td {
                 background-color: #5bcbf5;
-                font-size: 24px;
+                font-size: 18px;
                 color: #8ddbf8;
 
                 .el-calendar-day {
                     padding: 0;
+                    height: 60px;
                     &:hover {
                         background-color: unset;
                     }
@@ -161,6 +163,7 @@ export default class InsCalendar extends Vue {
                         align-items: center;
                         padding: 0 5px;
                         margin: 5px 0;
+                        margin-top: 0;
                         .timetable-color {
                             width: 7px;
                             height: 7px;
@@ -173,7 +176,7 @@ export default class InsCalendar extends Vue {
                         }
 
                         .num {
-                            font-size: 20px;
+                            font-size: 14px;
                         }
                     }
 

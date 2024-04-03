@@ -7,6 +7,7 @@
     <!-- <HkPromotion/> -->
     <HkLiveBox/>
     <PkMap/>
+    <!-- <PkNews/> -->
   </div>
 </template>
 
@@ -20,7 +21,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
     HkCompanyprofile: () => import('@/components/hkTasteBusiness/pc/home/HkCompanyprofile.vue'),
     HkLiveBox: () => import('@/components/hkTasteBusiness/pc/home/HkLiveBox.vue'),
     PkMap: () => import('@/components/hkTasteBusiness/pc/home/PkMap.vue'),
-    PkCate: () => import('@/components/hkTasteBusiness/pc/home/PkCate.vue')
+    PkCate: () => import('@/components/hkTasteBusiness/pc/home/PkCate.vue'),
+    PkNews: () => import('@/components/hkTasteBusiness/pc/home/PkNews2.vue')
   }
 })
 export default class InsHome extends Vue {

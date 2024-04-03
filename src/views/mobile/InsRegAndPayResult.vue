@@ -90,7 +90,7 @@ export default class Result extends Vue {
       this.$Api.regAndPay.getSubmitComplete(id).then(result => {
         this.result = result.data.ReturnValue;
         this.keycontent = result.data.ReturnValue.Key;
-        this.$Api.regAndPay.getHtml(this.keycontent, this.lang, false).then(result => {
+        this.$Api.regAndPay.getHtml(this.keycontent, this.lang, true).then(result => {
           this.payed = result.IsPay;
         });
         if (result.data.ReturnValue.IsPayed) this.$Confirm(this.$t('Message.Message'), this.$t('Order.Paid'));

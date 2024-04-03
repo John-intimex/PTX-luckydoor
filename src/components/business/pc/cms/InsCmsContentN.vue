@@ -4,6 +4,9 @@
       <div class="CmsContent">
           <p class="textTitle">{{content.Title}}</p>
           <p v-html="content.Body"></p>
+          <div style="margin-top: 100px;" v-if="content.Id===20324">
+            <ins-calendar />
+          </div>
       </div>
     </div>
   </div>
@@ -13,6 +16,7 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import Cookie from 'js-cookie';
 @Component({
   components: {
+    InsCalendar: () => import('@/components/business/pc/home/InsCalendar.vue')
   }
 })
 export default class InsCmsContentN extends Vue {
