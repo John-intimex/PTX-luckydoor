@@ -1,5 +1,9 @@
 <template>
   <div id="container" class="NomralBg NormalTop">
+    <div class="DetailTitle">
+      <img :src="BannerImg" v-if="BannerImg">
+    <!-- <div class="TitleBg"><div class="innerBoxText">{{CateName}}</div></div> -->
+    </div>
     <div class="CmsNormal">
       <div class="CmsContent">
           <p class="textTitle">{{content.Title}}</p>
@@ -93,6 +97,42 @@ export default class InsCmsContentN extends Vue {
     }
     /deep/ img {
       max-width: 100%;
+    }
+  }
+}
+.DetailTitle{
+  width: 100%;
+  display: flex;
+  flex-wrap:wrap;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  img{
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: 50% 50%;
+  }
+  .TitleBg{
+    width: 500px;
+    border: 1px solid #ffffff;
+    height: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+    padding: 10px;
+    margin-bottom: 20px;
+    top: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+    .innerBoxText{
+      background:#ffffff;
+      color: #333333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      font-weight: 700;
+      font-family: 'Arial';
     }
   }
 }

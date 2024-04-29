@@ -23,7 +23,7 @@
         </p>
         </router-link>
       </li>
-      <li>
+      <li class="position">
         <router-link to='/product/search/-'>
         <img src="/images/pc/index_17.jpg" alt="">
         <p>
@@ -138,6 +138,11 @@ li {
 .category_box_right {
   width: 100%;
   // float: right;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+  height: 688px;
 }
 .category_box_right li {
   width: 400px;
@@ -152,7 +157,7 @@ li {
   }
   a {
     display: block;
-    border: 2px solid #193152;
+    border: 2px solid #fff;
     position: relative;
     transition: all 0.3s;
     img{
@@ -174,7 +179,7 @@ li {
       position: absolute;
       left: 0;
       bottom: 0;
-      text-transform: uppercase;
+      // text-transform: uppercase;
       font-size: 24px;
       font-weight: bold;
       letter-spacing: 3px;
@@ -190,6 +195,37 @@ li {
         text-transform: height 0.3s;
       }
     }
+  }
+  &.position{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &:nth-child(1){
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  &:nth-child(2){
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  &:nth-child(3){
+        position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  &:nth-child(4){
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &:nth-child(5){
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 </style>

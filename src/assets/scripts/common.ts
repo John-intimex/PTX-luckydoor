@@ -63,10 +63,10 @@ export function getQueryString (name) {
       window.location.href = 'http://192.168.1.4:8080/pg' + payStr + AppId + '/' + payment + '/' + orderId; // dev
       break;
     case 'uat':
-      window.location.href = 'https://pg.uat2.intimex.hk:80/pg-uat' + payStr + AppId + '/' + payment + '/' + orderId; // uat
+      window.location.href = 'https://pg.eventizer.hk:80/pg' + payStr + AppId + '/' + payment + '/' + orderId; // uat
       break;
     case 'prod':
-      window.location.href = 'https://pg.uat2.intimex.hk:80/pg' + payStr + AppId + '/' + payment + '/' + orderId; // prd
+      window.location.href = 'https://pg.eventizer.hk:80/pg' + payStr + AppId + '/' + payment + '/' + orderId; // prd
       break;
   }
 }

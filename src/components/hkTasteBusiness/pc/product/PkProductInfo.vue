@@ -18,7 +18,7 @@
         <p class="ProductCode">{{$t("product.ProductCode")}}:{{panelDetail.Code}}</p>
         <p class="productItr" v-html="panelDetail.OverView"></p>
   </div>
-    <div class="in_unitInfo" v-if="panelDetail.UnitInfo.Desc!==null">{{$t('product.Unit')}}:{{panelDetail.UnitInfo.Desc}}</div>
+    <!-- <div class="in_unitInfo" v-if="panelDetail.UnitInfo.Desc!==null">{{$t('product.Unit')}}:{{panelDetail.UnitInfo.Desc}}</div> -->
     <div class="productPtx"  v-if="panelDetail.negotiable ">
         <div class="productInfo">
           <p class="TitleBg"><span>{{$t('Enquiry.ProductInformation')}}</span></p>
@@ -43,10 +43,15 @@
               <!-- pcs -->
               </span>
             </p>
-            <p class="perline"><span class="left">{{$t('Enquiry.Dimension')}}</span><span class="right">{{panelDetail.PackagingInfo}}</span></p>
+            <p class="perline">
+              <span class="left">{{$t('Enquiry.Dimension')}}</span>
+              <span class="right">{{panelDetail.ProductDimension}}</span>
+            </p>
             <p class="perline">
               <span class="left">{{$t("Enquiry.Package")}}</span>
               <!-- <span class="right">{{panelDetail.Permission}}</span> -->
+              <span class="right">{{panelDetail.YoutubeLink}}</span>
+
             </p>
           </div>
         </div>
@@ -55,14 +60,18 @@
           <div class="InnerTable">
             <p class="perline"><span class="left">{{$t('Enquiry.PcsperCarton')}}</span>
             <!-- <span class="right">{{panelDetail.Width}}</span> -->
+            <span class="right" v-html="panelDetail.Specification"></span>
             </p>
-            <p class="perline"><span class="left">{{$t("Enquiry.CtnDimension")}}</span><span class="right">{{panelDetail.ProductDimension}}</span></p>
+            <p class="perline">
+              <span class="left">{{$t("Enquiry.CtnDimension")}}</span>
+              <span class="right">{{panelDetail.PackagingInfo}}</span>
+            </p>
           </div>
         </div>
         <div class="productInfo">
             <p class="TitleBg"><span>{{$t('Message.OtherDetails')}}</span></p>
             <div class="InnerTable">
-              <p class="perline Specification" v-html="panelDetail.Specification"></p>
+              <p class="perline Specification" v-html="panelDetail.OverView"></p>
             </div>
         </div>
     </div>
@@ -244,6 +253,10 @@ export default class PkProductInfo extends Vue {
         a{
           font-size:20px;
           color:#999999;
+        }
+        /deep/ p{
+          font-size: 20px;
+          color: #999;
         }
       }
     }

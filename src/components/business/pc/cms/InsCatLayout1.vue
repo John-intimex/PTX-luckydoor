@@ -10,7 +10,7 @@
             <!-- <p class="PathData"><router-link to="/" class="HomePath">{{$t('Message.HomeTips')}}</router-link><i class="el-icon-arrow-right"></i><span class="currentTitle">{{CateName}}</span></p> -->
             <div class="cms_style1" v-if="catId === 40119">
               <div class="cms-list">
-                  <div class="perData" v-for="(v,index) in ListData" :key="index">
+                  <div class="perData" v-for="(v,index) in contentList" :key="index">
                       <div class="left">
                         <p class="title">{{v.Title}}</p>
                           <!-- <p class="contentTime">{{v.ContentDateTime}}</p> -->
@@ -18,17 +18,18 @@
                           <p class="body" v-html="v.Body"></p>
                           <p class="bodyp">……</p>
                           <div class="HomeViewMore">
-                              <router-link :to="'/cms/contentN/'+v.Id">Read More</router-link>
+                              <!-- <router-link :to="'/cms/contentN/'+v.Id">Read More</router-link> -->
+                              <router-link :to="v.Url">Read More</router-link>
                           </div>
                       </div>
                       <div class="right">
-                          <!-- <p class="imgs" @click="GoLink(v)"><img :src="v.Cover.indexOf('.png')!==-1 || v.Cover.indexOf('.jpg')!==-1 || v.Cover.indexOf('.jpeg')!==-1 || v.Cover.indexOf('.gif')!==-1?v.Cover:NoImg"></p> -->
-                          <iframe width="540" height="360" :src="v.Url" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                          <p class="imgs"><img :src="v.Cover.indexOf('.png')!==-1 || v.Cover.indexOf('.jpg')!==-1 || v.Cover.indexOf('.jpeg')!==-1 || v.Cover.indexOf('.gif')!==-1?v.Cover:NoImg"></p>
+                          <!-- <iframe width="540" height="360" :src="v.Url" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe> -->
                       </div>
                   </div>
-                  <div class="pager" v-if="totalRecord > pageSize">
+                  <!-- <div class="pager" v-if="totalRecord > pageSize">
                       <ins-page :total="totalRecord" v-model="currentPage" :pageNum="pageSize"></ins-page>
-                  </div>
+                  </div> -->
               </div>
             </div>
             <div class="cms" v-else>
@@ -74,6 +75,7 @@ export default class InsCatLayout1 extends Vue {
     pageSize:number=4;
     totalRecord:number=0;
     ListData:any[]=[];
+    contentList:any[]=[];
     BannerImg:string='';
     CateName:string='';
     catId: string= '';
@@ -113,9 +115,15 @@ export default class InsCatLayout1 extends Vue {
       });
     });
   }
+  getSubCatContents () {
+    this.$Api.cms.getSubCatContents({ CatId: this.cid, IsMobile: false }).then((result) => {
+      this.contentList = result.Data;
+    });
+  }
     created() {
         this.getContentsByCatId();
         this.getCategoryByDevice();
+        this.getSubCatContents();
     }
     @Watch('currentPage', { deep: true })
     onPagerChange() {
@@ -137,8 +145,8 @@ export default class InsCatLayout1 extends Vue {
 }
 .CatMain {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
 }
 .NomralBg {
   margin-top: 60px;
@@ -170,6 +178,9 @@ export default class InsCatLayout1 extends Vue {
   justify-content: center;
   img{
     width: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: 50% 50%;
   }
   .TitleBg{
     width: 500px;
@@ -229,10 +240,11 @@ export default class InsCatLayout1 extends Vue {
                     width: 100%;
                     height: 360px;
                     display: block;
-                    border-radius: 5px;
+                    // border-radius: 5px;
                     overflow: hidden;
-                    // border: 1px solid #eee;
+                    border: 1px solid #cccccc;
                     transition: all .3s;
+                    box-sizing: border-box;
                     img {
                         width: 100%;
                         height: 360px;
@@ -295,12 +307,12 @@ export default class InsCatLayout1 extends Vue {
                     }
                 }
                 .body{
+                  overflow: hidden;
+                  height: 144px;
                   /deep/ p{
                     line-height: 36px;
                     color: #666666;
                     font-size: 20px;
-                    overflow: hidden;
-                    height: 144px;
                   }
                 }
                 .bodyp{

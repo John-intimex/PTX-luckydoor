@@ -37,10 +37,14 @@
               <!-- pcs -->
               </span>
             </p>
-            <p class="perline"><span class="left">{{$t('Enquiry.Dimension')}}</span><span class="right">{{panelDetail.PackagingInfo}}</span></p>
+            <p class="perline">
+              <span class="left">{{$t('Enquiry.Dimension')}}</span>
+              <span class="right">{{panelDetail.ProductDimension}}</span>
+            </p>
             <p class="perline">
               <span class="left">{{$t("Enquiry.Package")}}</span>
               <!-- <span class="right">{{panelDetail.Permission}}</span> -->
+              <span class="right">{{panelDetail.YoutubeLink}}</span>
             </p>
           </div>
         </div>
@@ -49,14 +53,18 @@
           <div class="InnerTable">
             <p class="perline"><span class="left">{{$t('Enquiry.PcsperCarton')}}</span>
             <!-- <span class="right">{{panelDetail.Width}}</span> -->
+            <span class="right" v-html="panelDetail.Specification"></span>
             </p>
-            <p class="perline"><span class="left">{{$t("Enquiry.CtnDimension")}}</span><span class="right">{{panelDetail.ProductDimension}}</span></p>
+            <p class="perline">
+              <span class="left">{{$t("Enquiry.CtnDimension")}}</span>
+              <span class="right">{{panelDetail.PackagingInfo}}</span>
+            </p>
           </div>
         </div>
         <div class="productInfo">
             <p class="TitleBg"><span>{{$t('Message.OtherDetails')}}</span></p>
             <div class="InnerTable">
-              <p class="perline Specification" v-html="panelDetail.Specification"></p>
+              <p class="perline Specification" v-html="panelDetail.OverView"></p>
             </div>
         </div>
     </div>
@@ -222,7 +230,7 @@ export default class PkProductInfo extends Vue {
         border-bottom: 3rem solid #112a4d;
         border-right: 2.4rem solid transparent;
         position: absolute;
-        right: -2.4rem;
+        right: -2.35rem;
         bottom: 0;
       }
     }
@@ -243,6 +251,15 @@ export default class PkProductInfo extends Vue {
       .right {
         width: 60%;
         font-size: 1rem;
+        // color:#999999;
+        /deep/ p{
+          font-size: 1rem;
+          // color: #999;
+        }
+        a{
+          font-size:1rem;
+          // color:#999999;
+        }
       }
     }
   }

@@ -555,7 +555,7 @@ export default class InsCmsContent extends Vue {
           color: #112a4d;
         font-size: 22px;
         line-height: 26px;
-
+          word-break: break-word;
         }
         img{
           position: absolute;
@@ -688,6 +688,7 @@ export default class InsCmsContent extends Vue {
               font-size: 24px;
               color: #666666;
               line-height: 28px;
+              word-break: break-word;
             }
           }
         }
@@ -717,6 +718,12 @@ export default class InsCmsContent extends Vue {
               color: #6848a2;
               margin-top: 24px;
               margin-bottom: 18px;
+            }
+            p{
+              font-size: 24px;
+              color: #666;
+              line-height: 28px;
+              word-break: break-word;
             }
           }
         }
@@ -807,6 +814,7 @@ export default class InsCmsContent extends Vue {
               color: #112a4d;
               font-size: 20px;
               font-weight: bold;
+              width: 100%;
               p{
                 font-size: 18px;
                 margin-top: 5px;

@@ -12,7 +12,7 @@
           </ul>
         </div> -->
     </div>
-    <ul class="category_box_right">
+    <ul class="category_box_right fix">
       <li v-for="(b,index) in productCate" :key="index">
         <router-link
           :to="'/product/search/-?' + 'catalogs=' + JSON.stringify([b.Id]) + '&type=0'"
@@ -23,7 +23,7 @@
         </p>
         </router-link>
       </li>
-      <li>
+      <li class="position">
         <router-link to='/product/search/-'>
         <img src="/images/pc/index_17.jpg" alt="">
         <p>
@@ -133,6 +133,8 @@ ul,li{
   width: 90%;
   margin: 0 auto;
   // float: right;
+  position: relative;
+      min-height: 45rem;
 }
 .category_box_right li {
   width: 50%;
@@ -143,7 +145,8 @@ ul,li{
   box-sizing: border-box;
   a {
     display: block;
-    border: 1px solid #697689;
+    border: 2px solid #fff;
+    border-top: 4px solid #fff;
     position: relative;
     transition: all 0.3s;
     img{
@@ -165,12 +168,12 @@ ul,li{
       position: absolute;
       left: 0;
       bottom: 0;
-      text-transform: uppercase;
+      // text-transform: uppercase;
       font-size: 1.2rem;
       font-weight: bold;
       // letter-spacing: 3px;
       transition: height 0.3s;
-      padding: 0 1.5rem;
+      padding: 0 1rem;
       box-sizing: border-box;
     }
   }
@@ -184,6 +187,39 @@ ul,li{
   //     }
   //   }
   // }
+  &.position{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  &:nth-child(1){
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+  }
+  &:nth-child(2){
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &:nth-child(3){
+        position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+  }
+  &:nth-child(4){
+        position: absolute;
+    right: 0;
+    top: 0;
+  }
+  &:nth-child(5){
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
 }
 
 </style>

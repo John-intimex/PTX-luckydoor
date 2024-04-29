@@ -12,7 +12,7 @@ if (param === 'dev') {
     AdminServer = 'https://admin.uat2.intimex.hk';
 } else if (param === 'prod') {
     apiServer = 'https://api.uat.in-store.hk';
-    AdminServer = 'https://admin.uat.in-store.hk';
+    AdminServer = 'https://admin.eventizer.hk';
 }
 
 function getArgList() {

@@ -96,9 +96,10 @@ export default class PkLiveBox extends Vue {
         margin-top: 2rem;
         margin-bottom: 3rem;
         background-size: 100% 100%;
-        display: inline-block;
+        display: block;
         // padding: 2.5rem;
         box-sizing: border-box;
+        width: 100%;
         img{
           width: 100%;
         }

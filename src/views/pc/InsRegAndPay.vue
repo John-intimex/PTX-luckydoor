@@ -12,7 +12,7 @@
     </div>
 </template>
 <script lang="ts">
-import { Vue, Prop, Component } from 'vue-property-decorator';
+import { Vue, Prop, Watch, Component } from 'vue-property-decorator';
 import Cookie from 'js-cookie';
 @Component
 export default class InsRegAndPay extends Vue {
@@ -91,6 +91,21 @@ export default class InsRegAndPay extends Vue {
       // window['getPanel'] = this.$Api.getPanel;
 
       window['Elalert'] = this.$alert;
+    }
+    @Watch('id')
+    onIdChange () {
+      // RNP Form后台预览跳转语言判断
+      if (this.queryLang) {
+        this.$Api.member.setUILanguage(this.queryLang).then((result) => {
+          this.$i18n.locale = this.queryLang as string;
+          localStorage.setItem('locale', this.queryLang as string);
+          this.getForm();
+        }).catch((error) => {
+          console.log(error);
+        });
+      } else {
+        this.getForm();
+      }
     }
 }
 </script>

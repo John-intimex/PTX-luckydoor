@@ -84,7 +84,7 @@ export default class DefaultHeader extends Vue {
           align-items: center;
           // margin: 0 auto;
           background-color: #112a4d;
-          padding-left: 1.5rem;
+          padding-left: 1.3rem;
           box-sizing: border-box;
           position: relative;
           &::after{
@@ -94,7 +94,7 @@ export default class DefaultHeader extends Vue {
             border-bottom: 5rem solid #112a4d;
             border-right: 4rem solid transparent;
             position: absolute;
-            right: -3.98rem;
+            right: -3.9rem;
             bottom: 0;
           }
           /deep/ img{

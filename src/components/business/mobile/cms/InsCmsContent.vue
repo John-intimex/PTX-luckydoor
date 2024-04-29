@@ -649,6 +649,7 @@ export default class InsCmsContent extends Vue {
           color: #112a4d;
           font-size: 1.2rem;
           line-height: 1.6rem;
+          word-break: break-word;
         }
       }
       td{
@@ -685,6 +686,7 @@ export default class InsCmsContent extends Vue {
           color: #fff;
           font-size: 1.2rem;
           line-height: 1.6rem;
+          word-break: break-word;
         }
       }
 
@@ -704,6 +706,7 @@ export default class InsCmsContent extends Vue {
           color: #112a4d;
           font-size: 1.2rem;
           line-height: 1.6rem;
+          word-break: break-word;
         }
       }
     }
@@ -735,6 +738,7 @@ export default class InsCmsContent extends Vue {
                 margin-top: 5px;
                 font-weight: 500;
                 line-height: 1.8rem;
+                word-break: break-word;
               }
             }
           }
@@ -765,6 +769,7 @@ export default class InsCmsContent extends Vue {
     padding-left: 3rem;
     p{
       font-size:1.4rem;
+      word-break: break-word;
     }
   }
 }
@@ -796,6 +801,7 @@ export default class InsCmsContent extends Vue {
             color: #666666;
             line-height: 1.8rem;
             width: 20rem;
+            word-break: break-word;
           }
         }
         .img{

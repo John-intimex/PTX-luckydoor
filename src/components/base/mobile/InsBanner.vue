@@ -34,7 +34,10 @@ export default class Banner extends Vue {
   private loading = false; // 數據加載過渡效果
 
   swiperOption: any = {
+    effect: 'fade',
+    speed: 3000,
     autoplay: {
+      delay: 5000,
       disableOnInteraction: false
     },
     pagination: {
